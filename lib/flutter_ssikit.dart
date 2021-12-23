@@ -5,6 +5,9 @@
 
 library Ssikit;
 
+// 主题
+export 'src/theme/ssi_theme.dart';
+
 // import 'package:flutter/services.dart';
 
 // class FlutterSsikit {
