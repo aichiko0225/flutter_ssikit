@@ -1,4 +1,4 @@
-class BrnStrings {
+class SsiStrings {
   //加载获取assets资源需要
   static const String flutterPackageName = "ssikit";
 
