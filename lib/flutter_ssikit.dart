@@ -7,6 +7,9 @@ export 'src/theme/ssi_theme.dart';
 //工具类 和 资源
 export 'src/components/toast/ssi_toast.dart';
 
+//文本
+export 'src/components/text/ssi_expandable_text.dart';
+
 import 'package:flutter/services.dart';
 
 class FlutterSsikit {

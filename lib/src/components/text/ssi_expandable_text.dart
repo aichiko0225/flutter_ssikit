@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ssikit/flutter_ssikit.dart';
 
 typedef TextExpandedCallback  = Function(bool) ;
 
@@ -54,6 +55,7 @@ class SsiExpandableText extends StatefulWidget {
       this.color})
       : super(key: key);
 
+  @override
   _SsiExpandableTextState createState() => _SsiExpandableTextState();
 }
 
@@ -115,7 +117,7 @@ class _SsiExpandableTextState extends State<SsiExpandableText> {
     Text tx = Text(
       '更多',
       style: TextStyle(
-          // color: SsiThemeConfigurator.instance.getConfig().commonConfig.brandPrimary, 
+          color: SsiThemeConfigurator.instance.getConfig()?.commonConfig?.brandPrimary, 
           fontSize: 14),
     );
     Container cnt = Container(
@@ -155,7 +157,7 @@ class _SsiExpandableTextState extends State<SsiExpandableText> {
         TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w400,
-          // color: SsiThemeConfigurator.instance.getConfig().commonConfig.colorTextBase,
+          color: SsiThemeConfigurator.instance.getConfig()?.commonConfig?.colorTextBase,
         );
     return style;
   }
@@ -164,7 +166,7 @@ class _SsiExpandableTextState extends State<SsiExpandableText> {
     return TextSpan(
         text: ' 收起',
         style: TextStyle(
-          // color: SsiThemeConfigurator.instance.getConfig().commonConfig.brandPrimary,
+          color: SsiThemeConfigurator.instance.getConfig()?.commonConfig?.brandPrimary,
           fontSize: 14,
         ),
         recognizer: TapGestureRecognizer()

@@ -1,9 +1,20 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_ssikit_example/sample/components/content/text_expanded_example.dart';
 import 'package:flutter_ssikit_example/sample/components/toast/toast_example.dart';
 
 /// 主页面
 class HomePage extends StatelessWidget {
+
+  Map<String, WidgetBuilder> demoList = {
+    'ToastExample': (context) {
+      return ToastExample();
+    },
+    'TextExpandedExample': (context) {
+      return SsiTextExpandedContentExample();
+    }
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,25 +28,20 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildBodyWidget() {
-    // List<GroupInfo> list = CardDataConfig.getAllGroup();
 
     return Container(
         color: Color(0xFFF8F8F8),
         padding: EdgeInsets.fromLTRB(16, 10, 16, 0),
         child: ListView.builder(
             shrinkWrap: true,
-            itemCount: 1,
+            itemCount: demoList.length,
             itemBuilder: (BuildContext context, int index) {
+              var text = demoList.keys.toList()[index];
               return Container(
                 padding: EdgeInsets.only(top: 10),
                 child: TextButton(onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                    return ToastExample();
-                  }));
-                }, child: Text('ToastExample')),
-                // child: GroupCard(
-                //   groupInfo: list[index],
-                // ),
+                  Navigator.of(context).push(MaterialPageRoute(builder: demoList[text]!));
+                }, child: Text(text)),
               );
             }));
   }

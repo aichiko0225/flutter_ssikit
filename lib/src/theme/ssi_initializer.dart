@@ -9,10 +9,10 @@ class SsiInitializer {
   static register(
       {SsiAllThemeConfig? allThemeConfig,
       String configId = SsiThemeConfigurator.GLOBAL_CONFIG_ID,
-      SsiThemeImgUtils? brunoImgUtils}) {
+      SsiThemeImgUtils? ssikitImgUtils}) {
     /// 配置图片
-    if (brunoImgUtils != null) {
-      // SsiThemeImg.register(brunoImgUtils: brunoImgUtils);
+    if (ssikitImgUtils != null) {
+      // SsiThemeImg.register(ssikitImgUtils: ssikitImgUtils);
     }
 
     /// 配置主题定制

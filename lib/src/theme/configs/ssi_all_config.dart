@@ -1,3 +1,4 @@
+import 'package:flutter_ssikit/src/theme/configs/ssi_common_config.dart';
 import 'package:flutter_ssikit/src/theme/ssi_theme.dart';
 import 'package:flutter_ssikit/src/theme/ssi_theme_configurator.dart';
 
@@ -10,7 +11,9 @@ import 'package:flutter_ssikit/src/theme/ssi_theme_configurator.dart';
 /// 当没有配置组件的特定属性时使用上一级特定配置
 ///
 class SsiAllThemeConfig {
-  SsiAllThemeConfig({String configId = SsiThemeConfigurator.GLOBAL_CONFIG_ID});
+  SsiCommonConfig? commonConfig;
+
+  SsiAllThemeConfig({this.commonConfig, String configId = SsiThemeConfigurator.GLOBAL_CONFIG_ID});
 
   void initThemeConfig(String configId) {}
 }
