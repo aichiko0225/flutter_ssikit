@@ -38,7 +38,7 @@ class _SsiTextExpandedContentExampleState
               ),
             ),
             Text(
-              '由于Flutter使用自己的引擎进行UI渲染，而不是用原生控件渲染，导致控件显示效果和原生不是完全一样，虽然肉眼看起来基本一样，'
+              'UI平台一致性 \n由于Flutter使用自己的引擎进行UI渲染，而不是用原生控件渲染，导致控件显示效果和原生不是完全一样，虽然肉眼看起来基本一样，'
               '但还是有一些细微的差别，尤其当Android和iOS系统升级导致原生控件效果发生变化时，Flutter开发的App并不会进行相应的变化，如果您的App需要原生控件保持完全一致，Flutter可能并不适合您。',
               style: TextStyle(
                 color: Color(0xFF222222),

@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_ssikit_example/sample/components/content/text_expanded_example.dart';
-import 'package:flutter_ssikit_example/sample/components/toast/toast_example.dart';
+import '/sample/components/content/text_expanded_example.dart';
+import '/sample/components/toast/toast_example.dart';
 
 /// 主页面
 class HomePage extends StatelessWidget {
