@@ -6,7 +6,8 @@ class ToastExample extends StatefulWidget {
   _ToastExampleState createState() => _ToastExampleState();
 }
 
-class _ToastExampleState extends State<ToastExample> with TickerProviderStateMixin {
+class _ToastExampleState extends State<ToastExample>
+    with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +22,8 @@ class _ToastExampleState extends State<ToastExample> with TickerProviderStateMix
               child: Center(
                 child: RaisedButton(
                   onPressed: () {
-                    SsiToast.show("普通长Toast", context, duration: SsiToast.LENGTH_LONG, gravity: 1);
+                    SsiToast.show("普通长Toast", context,
+                        duration: SsiToast.LENGTH_LONG, gravity: 1);
                   },
                   child: Text("普通长Toast"),
                 ),
@@ -59,6 +61,44 @@ class _ToastExampleState extends State<ToastExample> with TickerProviderStateMix
                   },
                   child: Text("成功图标Toast"),
                 ),
+              ),
+            ),
+            RaisedButton(
+              onPressed: () {
+                SsiLoadingToast.showLoading(context);
+              },
+              child: Text("显示 loading Toast"),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  OutlinedButton(
+                      onPressed: () {
+                        SsiStatusToast.showSuccess(context, successText: '修改成功',
+                            onDismiss: () {
+                          debugPrint('onDismiss');
+                        });
+                      },
+                      child: Text('success')),
+                  OutlinedButton(
+                      onPressed: () {
+                        SsiStatusToast.showFailure(context, failureText: '修改失败',
+                            onDismiss: () {
+                          debugPrint('onDismiss');
+                        });
+                      },
+                      child: Text('failure')),
+                      OutlinedButton(
+                      onPressed: () {
+                        SsiStatusToast.showInfoText(context, message: '状态文本',
+                            onDismiss: () {
+                          debugPrint('onDismiss');
+                        });
+                      },
+                      child: Text('info_text')),
+                ],
               ),
             )
           ],

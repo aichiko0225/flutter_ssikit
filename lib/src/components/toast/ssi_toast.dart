@@ -3,6 +3,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_ssikit/src/components/loading/ssi_loading.dart';
+import 'package:flutter_ssikit/src/components/loading/ssi_status_dialog.dart';
 
 /// 通用的Toast组件
 class SsiToast {
@@ -68,6 +70,75 @@ class SsiToast {
   }
 }
 
+/// 显示loading toast 的扩展方法
+extension SsiLoadingToast on SsiToast {
+  /// 展示加载弹窗的静态方法。
+  ///
+  ///  * [context] 上下文
+  ///  * [content] 加载时的提示文案
+  ///  * [barrierDismissible] 点击蒙层背景是否关闭弹窗，默认为 true，可关闭，详见 [showDialog] 中的 [barrierDismissible]
+  ///  * [barrierColor] 蒙层背景颜色
+  ///  * [useRootNavigator] 把弹窗添加到 [context] 中的 rootNavigator 还是最近的 [Navigator]，默认为 true，添加到
+  ///    rootNavigator，详见 [showDialog] 中的 [useRootNavigator]。
+  static void showLoading(
+    BuildContext context, {
+    String? content,
+    bool barrierDismissible = true,
+    Color? barrierColor = Colors.black54,
+    bool useRootNavigator = true,
+  }) {
+    SsiLoadingDialog.show(context,
+        content: content,
+        barrierDismissible: barrierDismissible,
+        useRootNavigator: useRootNavigator,
+        barrierColor: barrierColor);
+  }
+
+  /// 关闭弹窗。
+  ///
+  ///  * [context] 上下文。
+  static void dismiss(BuildContext context) {
+    SsiLoadingDialog.dismiss(context);
+  }
+}
+
+/// 显示不同状态的 toast
+extension SsiStatusToast on SsiToast {
+
+  static void showSuccess(BuildContext context,
+      {String? successText,
+      Duration duration = const Duration(seconds: 1),
+      VoidCallback? onDismiss}) {
+    SsiStatusToastDialog.show(context,
+        message: successText,
+        toastStatus: ToastStatus.success,
+        duration: duration,
+        onDismiss: onDismiss);
+  }
+
+  static void showFailure(BuildContext context,
+      {String? failureText,
+      Duration duration = const Duration(seconds: 1),
+      VoidCallback? onDismiss}) {
+    SsiStatusToastDialog.show(context,
+        message: failureText,
+        toastStatus: ToastStatus.failure,
+        duration: duration,
+        onDismiss: onDismiss);
+  }
+
+  static void showInfoText(BuildContext context,
+      {String? message,
+      Duration duration = const Duration(seconds: 1),
+      VoidCallback? onDismiss}) {
+    SsiStatusToastDialog.show(context,
+        message: message,
+        toastStatus: ToastStatus.info,
+        duration: duration,
+        onDismiss: onDismiss);
+  }
+}
+
 _ToastWidget _buildToastLayout(
     BuildContext context,
     Color background,
@@ -124,14 +195,13 @@ class _ToastView {
   OverlayEntry? _overlayEntry;
   bool _isVisible = false;
 
-  _show(int duration, {VoidCallback? onDismiss}) async {
+  _show(int? duration, {VoidCallback? onDismiss}) async {
     _isVisible = true;
     if (_overlayEntry == null) {
       return;
     }
     overlayState?.insert(_overlayEntry!);
-    await Future.delayed(
-        Duration(seconds: duration == null ? SsiToast.LENGTH_SHORT : duration));
+    await Future.delayed(Duration(seconds: duration ?? SsiToast.LENGTH_SHORT));
     _dismiss();
     if (onDismiss != null) {
       onDismiss();

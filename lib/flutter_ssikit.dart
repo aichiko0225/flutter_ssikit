@@ -6,6 +6,9 @@ export 'src/theme/ssi_theme.dart';
 
 //工具类 和 资源
 export 'src/components/toast/ssi_toast.dart';
+export 'src/components/loading/ssi_loading.dart';
+export 'src/components/loading/ssi_cupertino_activityIndicator.dart';
+
 
 //文本
 export 'src/components/text/ssi_expandable_text.dart';
