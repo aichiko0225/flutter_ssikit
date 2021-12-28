@@ -14,6 +14,10 @@ export 'src/utils/ssi_tools.dart';
 //文本
 export 'src/components/text/ssi_expandable_text.dart';
 
+//分割线
+export 'src/components/line/ssi_line.dart';
+export 'src/components/line/ssi_dashed_line.dart';
+
 //通知栏
 export 'src/components/noticebar/ssi_notice_bar.dart';
 

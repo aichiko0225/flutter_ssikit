@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ssikit/flutter_ssikit.dart';
 
 /// 列表项
 class ListItem extends StatefulWidget {
@@ -58,16 +59,16 @@ class _ListItemState extends State<ListItem> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // widget.isShowLine
-              //     ? BrnLine(
-              //         color: Color(0xFFEEEEEE),
-              //         height: 1,
-              //       )
-              //     : Container(),
-              // BrnLine(
-              //   height: 14,
-              //   color: Colors.transparent,
-              // ),
+              widget.isShowLine
+                  ? SsiLine(
+                      color: Color(0xFFEEEEEE),
+                      height: 1,
+                    )
+                  : Container(),
+              SsiLine(
+                height: 14,
+                color: Colors.transparent,
+              ),
               Wrap(children: [
                 Text(
                   widget.title,
@@ -84,10 +85,10 @@ class _ListItemState extends State<ListItem> {
                 widget.describe,
                 style: TextStyle(color: widget.describeColor ?? Color(0xFF999999), fontSize: 12),
               ),
-              // BrnLine(
-              //   height: 14,
-              //   color: Colors.transparent,
-              // )
+              SsiLine(
+                height: 14,
+                color: Colors.transparent,
+              )
             ],
           )),
     );
