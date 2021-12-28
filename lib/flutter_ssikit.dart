@@ -8,10 +8,15 @@ export 'src/theme/ssi_theme.dart';
 export 'src/components/toast/ssi_toast.dart';
 export 'src/components/loading/ssi_loading.dart';
 export 'src/components/loading/ssi_cupertino_activityIndicator.dart';
-
+export 'src/constants/ssi_asset_constants.dart';
+export 'src/utils/ssi_tools.dart';
 
 //文本
 export 'src/components/text/ssi_expandable_text.dart';
+
+//通知栏
+export 'src/components/noticebar/ssi_notice_bar.dart';
+
 
 import 'package:flutter/services.dart';
 

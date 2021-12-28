@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_ssikit_example/sample/components/noticebar/ssi_notice_bar_example.dart';
 import '/sample/components/content/text_expanded_example.dart';
 import '/sample/components/toast/toast_example.dart';
 
@@ -12,6 +13,9 @@ class HomePage extends StatelessWidget {
     },
     'TextExpandedExample': (context) {
       return SsiTextExpandedContentExample();
+    },
+    'NoticeBarExample': (context) {
+      return SsiNoticeBarExample();
     }
   };
 
