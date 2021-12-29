@@ -128,6 +128,7 @@ class _ActionSheetEntryPageState extends State<ActionSheetEntryPage> {
     actions.add(SsiCommonActionSheetItem(
       '选项三',
       actionStyle: SsiCommonActionSheetItemStyle.normal,
+      // minSheetHeight: 100
     ));
 
     // 构建不带标题栏的actionSheet

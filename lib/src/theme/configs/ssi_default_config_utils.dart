@@ -1,14 +1,15 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter_ssikit/src/theme/configs/ssi_all_config.dart';
-import 'package:flutter_ssikit/src/theme/configs/ssi_common_config.dart';
+import '../../components/picker/base/ssi_picker_constants.dart';
+import '../../theme/base/ssi_text_style.dart';
+import 'ssi_all_config.dart';
+import 'ssi_common_config.dart';
+import 'ssi_picker_config.dart';
 
 /// Bruno默认配置
 class SsiDefaultConfigUtils {
   ///  默认全局配置
   static SsiAllThemeConfig defaultAllConfig = SsiAllThemeConfig(
-    commonConfig: defaultCommonConfig
-  );
+      commonConfig: defaultCommonConfig, pickerConfig: defaultPickerConfig);
 
   /// 全局默认配置
   static SsiCommonConfig defaultCommonConfig = SsiCommonConfig(
@@ -138,5 +139,33 @@ class SsiDefaultConfigUtils {
     iconSizeSm: 14,
     iconSizeMd: 16,
     iconSizeLg: 32,
+  );
+
+  static SsiPickerConfig defaultPickerConfig = SsiPickerConfig(
+    backgroundColor: PICKER_BACKGROUND_COLOR,
+    cancelTextStyle: SsiTextStyle(
+        color: defaultCommonConfig.colorTextBase,
+        fontSize: defaultCommonConfig.fontSizeSubHead),
+    confirmTextStyle: SsiTextStyle(
+        color: defaultCommonConfig.brandPrimary,
+        fontSize: defaultCommonConfig.fontSizeSubHead),
+    titleTextStyle: SsiTextStyle(
+        color: defaultCommonConfig.colorTextBase,
+        fontSize: defaultCommonConfig.fontSizeSubHead,
+        fontWeight: FontWeight.w600,
+        decoration: TextDecoration.none),
+    pickerHeight: PICKER_HEIGHT,
+    titleHeight: PICKER_TITLE_HEIGHT,
+    itemHeight: PICKER_ITEM_HEIGHT,
+    dividerColor: const Color(0xFFF0F0F0),
+    itemTextStyle: SsiTextStyle(
+        color: defaultCommonConfig.colorTextBase,
+        fontSize: defaultCommonConfig.fontSizeHead),
+    itemTextSelectedStyle: SsiTextStyle(
+      color: defaultCommonConfig.brandPrimary,
+      fontSize: defaultCommonConfig.fontSizeHead,
+      fontWeight: FontWeight.w600,
+    ),
+    cornerRadius: 8,
   );
 }

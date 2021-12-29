@@ -14,6 +14,11 @@ export 'src/utils/ssi_tools.dart';
 //actionsheet
 export 'src/components/actionsheet/ssi_common_action_sheet.dart';
 
+//选择器
+export 'src/components/picker/ssi_bottom_picker.dart';
+export 'src/components/picker/ssi_bottom_write_picker.dart';
+export 'src/components/picker/ssi_picker_cliprrect.dart';
+
 //文本
 export 'src/components/text/ssi_expandable_text.dart';
 

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ssikit_example/sample/components/actionsheet/actionsheet_entry_page.dart';
 import 'package:flutter_ssikit_example/sample/components/noticebar/ssi_notice_bar_example.dart';
+import 'package:flutter_ssikit_example/sample/components/picker/cutomer_bottom_picker_example.dart';
 import '/sample/components/content/text_expanded_example.dart';
 import '/sample/components/toast/toast_example.dart';
 
@@ -20,6 +21,9 @@ class HomePage extends StatelessWidget {
     },
     'ActionSheetExample': (context) {
       return ActionSheetEntryPage('ActionSheet示例');
+    },
+    'PickerExamplePage': (context) {
+      return CustomPickerExamplePage();
     }
   };
 

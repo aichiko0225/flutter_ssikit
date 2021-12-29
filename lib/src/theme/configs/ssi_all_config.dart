@@ -2,6 +2,8 @@ import 'package:flutter_ssikit/src/theme/configs/ssi_common_config.dart';
 import 'package:flutter_ssikit/src/theme/ssi_theme.dart';
 import 'package:flutter_ssikit/src/theme/ssi_theme_configurator.dart';
 
+import 'ssi_picker_config.dart';
+
 /// 描述: 全局配置
 ///
 /// 当用户使用时对单个组件自定义配置，优先走单个组件特定配置（作用范围档次使用）
@@ -13,7 +15,12 @@ import 'package:flutter_ssikit/src/theme/ssi_theme_configurator.dart';
 class SsiAllThemeConfig {
   SsiCommonConfig? commonConfig;
 
-  SsiAllThemeConfig({this.commonConfig, String configId = SsiThemeConfigurator.GLOBAL_CONFIG_ID});
+  SsiPickerConfig? pickerConfig;
+
+  SsiAllThemeConfig(
+      {this.commonConfig,
+      this.pickerConfig,
+      String configId = SsiThemeConfigurator.GLOBAL_CONFIG_ID});
 
   void initThemeConfig(String configId) {}
 }

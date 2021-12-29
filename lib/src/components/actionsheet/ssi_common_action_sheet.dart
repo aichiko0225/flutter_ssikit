@@ -40,12 +40,16 @@ class SsiCommonActionSheetItem {
   /// 辅助信息文本样式
   final TextStyle? descStyle;
 
+  /// 最小的高度 默认为0
+  final double minSheetHeight;
+
   SsiCommonActionSheetItem(
     this.title, {
     this.desc,
     this.actionStyle = SsiCommonActionSheetItemStyle.normal,
     this.titleStyle,
     this.descStyle,
+    this.minSheetHeight = 0
   });
 }
 
@@ -257,6 +261,8 @@ class SsiCommonActionSheet extends StatelessWidget {
         GestureDetector(
           behavior: HitTestBehavior.opaque,
           child: Container(
+            alignment: Alignment.center,
+            constraints: BoxConstraints(minHeight: actions[index].minSheetHeight),
             padding: _contentPadding,
             child: _configTile(actions[index]),
           ),
