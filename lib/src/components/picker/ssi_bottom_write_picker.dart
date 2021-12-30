@@ -114,22 +114,19 @@ class SsiBottomWritePicker extends StatefulWidget {
 }
 
 class _BottomWritePickerState extends State<SsiBottomWritePicker> {
-  late TextEditingController _controller;
+  TextEditingController _controller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    if (_controller == null) {
-      if (widget.defaultText != null &&
-          (widget.defaultText?.isNotEmpty ?? false)) {
-        _controller = TextEditingController.fromValue(TextEditingValue(
-            text: widget.defaultText ?? '',
-            selection: TextSelection.fromPosition(TextPosition(
-                affinity: TextAffinity.downstream,
-                offset: widget.defaultText?.length ?? 0))));
-      } else {
-        _controller = TextEditingController();
-      }
+
+    if (widget.defaultText != null &&
+        (widget.defaultText?.isNotEmpty ?? false)) {
+      _controller = TextEditingController.fromValue(TextEditingValue(
+          text: widget.defaultText ?? '',
+          selection: TextSelection.fromPosition(TextPosition(
+              affinity: TextAffinity.downstream,
+              offset: widget.defaultText?.length ?? 0))));
     }
   }
 

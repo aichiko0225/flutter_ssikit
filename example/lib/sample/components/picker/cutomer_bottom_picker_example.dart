@@ -128,7 +128,35 @@ class CustomPickerExamplePage extends StatelessWidget {
                     ));
               },
             ),
+            ListItem(
+              title: "BottomWriteDialog",
+              describe: 'Picker/文字录入  底部输入弹框',
+              onPressed: () {
+                _showBottomWriteDialog(context);
+              },
+            ),
           ],
         ));
+  }
+
+
+  ///底部有输入框弹框
+  void _showBottomWriteDialog(BuildContext context) {
+    SsiBottomWritePicker.show(
+      context,
+      title: '这里是标题',
+      hintText: '请输入',
+      cancelDismiss: true,
+      confirmDismiss: false,
+      onConfirm: (context, text) {
+        SsiToast.show(text, context);
+        return Future<void>.value();
+      },
+      onCancel: (_) {
+        Navigator.of(context).pop();
+        return Future<void>.value();
+      },
+      defaultText: "",
+    );
   }
 }
