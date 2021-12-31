@@ -5,7 +5,7 @@ import 'package:flutter_ssikit/src/theme/ssi_theme.dart';
 import 'package:flutter_ssikit/src/theme/configs/ssi_all_config.dart';
 
 class SsiThemeConfigurator {
-  static const String BRUNO_CONFIG_ID = 'BRUNO_CONFIG_ID';
+  static const String SSIKIT_CONFIG_ID = 'SSIKIT_CONFIG_ID';
   static const String GLOBAL_CONFIG_ID = 'GLOBAL_CONFIG_ID';
 
   static final SsiThemeConfigurator _instance = SsiThemeConfigurator._();
@@ -21,7 +21,7 @@ class SsiThemeConfigurator {
   void register(SsiAllThemeConfig? allThemeConfig, {String configId = GLOBAL_CONFIG_ID}) {
 
     /// 先赋值默认配置
-    checkAndInitBrunoConfig();
+    checkAndInitSsikitConfig();
 
     /// 打平内部字段
     allThemeConfig?.initThemeConfig(configId);
@@ -37,27 +37,27 @@ class SsiThemeConfigurator {
   /// 2、若获取的为 null，则使用默认的全局配置。
   /// 3、若没有配置 GLOBAL_CONFIG_ID ，则使用 SSIKIT 的配置。
   SsiAllThemeConfig? getConfig({String configId = GLOBAL_CONFIG_ID}) {
-    checkAndInitBrunoConfig();
+    checkAndInitSsikitConfig();
 
     SsiAllThemeConfig? allThemeConfig = globalConfig[configId];
     if (allThemeConfig == null) {
       allThemeConfig = globalConfig[GLOBAL_CONFIG_ID];
     }
     if (allThemeConfig == null) {
-      allThemeConfig = globalConfig[BRUNO_CONFIG_ID];
+      allThemeConfig = globalConfig[SSIKIT_CONFIG_ID];
     }
     return allThemeConfig;
   }
 
   /// 检查是否有默认配置
   bool isSsikitConfig() {
-    return globalConfig[BRUNO_CONFIG_ID] != null;
+    return globalConfig[SSIKIT_CONFIG_ID] != null;
   }
 
   /// 没有默认配置 配置默认配置
-  void checkAndInitBrunoConfig() {
+  void checkAndInitSsikitConfig() {
     if (!isSsikitConfig()) {
-      globalConfig[BRUNO_CONFIG_ID] = SsiDefaultConfigUtils.defaultAllConfig;
+      globalConfig[SSIKIT_CONFIG_ID] = SsiDefaultConfigUtils.defaultAllConfig;
     }
   }
 }

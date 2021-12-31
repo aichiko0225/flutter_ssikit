@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_ssikit_example/sample/components/actionsheet/actionsheet_entry_page.dart';
+import 'package:flutter_ssikit_example/sample/components/form/text_input_example.dart';
 import 'package:flutter_ssikit_example/sample/components/noticebar/ssi_notice_bar_example.dart';
 import 'package:flutter_ssikit_example/sample/components/picker/cutomer_bottom_picker_example.dart';
 import '/sample/components/content/text_expanded_example.dart';
@@ -24,6 +24,9 @@ class HomePage extends StatelessWidget {
     },
     'PickerExamplePage': (context) {
       return CustomPickerExamplePage();
+    },
+    'TextInputExamplePage': (context) {
+      return TextInputExamplePage('input item');
     }
   };
 

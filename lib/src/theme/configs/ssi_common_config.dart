@@ -324,7 +324,7 @@ class SsiCommonConfig extends SsiBaseConfig {
     String configId = SsiThemeConfigurator.GLOBAL_CONFIG_ID,
   }) : super(configId: configId, autoFlatConfig: true);
 
-  /// 优先级  [GLOBAL_CONFIG_ID] 获取配置 > [BRUNO_CONFIG_ID] 获取配置
+  /// 优先级  [GLOBAL_CONFIG_ID] 获取配置 > [SSIKIT_CONFIG_ID] 获取配置
   @override
   void initThemeConfig(String configId, {SsiCommonConfig? currentLevelCommonConfig}) {
     /// 获取合适的 完整配置（SsiAllConfig）

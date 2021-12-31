@@ -105,7 +105,7 @@ class SsiAsset {
   static const String ICON_IM = 'images/icon_im_blue.png';
   static const String ICON_CALL = 'images/icon_call.png';
   static const String ICON_CALL_DISABLE = 'images/icon_call_disable.png';
-  static const String PERSON_PLACE_HOLDER = 'packages/bruno/assets/icons/img_avatar_new.png';
+  static const String PERSON_PLACE_HOLDER = 'packages/flutter_ssikit/assets/icons/img_avatar_new.png';
 
   /// radio组件，用于单选和多选
   static const String ICON_RADIO_MULTI_SELECTED = 'icons/radio/multiple_selected.png';

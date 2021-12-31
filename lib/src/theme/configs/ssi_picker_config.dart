@@ -8,7 +8,7 @@ import '../../components/picker/base/ssi_picker_constants.dart';
 /// 选择器配置
 class SsiPickerConfig extends SsiBaseConfig {
   
-  ///遵循外部主题配置，Bruno默认配置[SsiDefaultConfigUtils.defaultPickerConfig]
+  ///遵循外部主题配置，Ssikit默认配置[SsiDefaultConfigUtils.defaultPickerConfig]
   SsiPickerConfig(
       {this.backgroundColor,
       this.cancelTextStyle,

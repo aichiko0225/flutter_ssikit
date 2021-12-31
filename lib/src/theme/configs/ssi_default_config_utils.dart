@@ -6,7 +6,7 @@ import 'ssi_all_config.dart';
 import 'ssi_common_config.dart';
 import 'ssi_picker_config.dart';
 
-/// Bruno默认配置
+/// Ssikit默认配置
 class SsiDefaultConfigUtils {
   ///  默认全局配置
   static SsiAllThemeConfig defaultAllConfig = SsiAllThemeConfig(

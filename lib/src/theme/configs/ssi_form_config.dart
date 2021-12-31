@@ -98,7 +98,7 @@ class SsiFormItemConfig extends SsiBaseConfig {
   /// ① 尝试获取最近的配置 [topRadius] 若配不为 null，直接使用该配置.
   /// ② [topRadius] 若为 null，尝试使用 全局配置中的配置 SsiFormItemConfig.
   /// ③ 如果全局配置中的配置同样为 null 则根据 [configId] 取出全局配置。
-  /// ④ 如果没有配置 [configId] 的全局配置，则使用 Bruno 默认的配置
+  /// ④ 如果没有配置 [configId] 的全局配置，则使用 Ssikit 默认的配置
   @override
   void initThemeConfig(String configId, {SsiCommonConfig? currentLevelCommonConfig}) {
     super.initThemeConfig(configId, currentLevelCommonConfig: currentLevelCommonConfig);

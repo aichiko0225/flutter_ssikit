@@ -49,13 +49,13 @@ class SsiInputItemType {
 
 /// 键盘类型
 class SsiInputType {
-  static const String TEXT = "text";
-  static const String MULTI_LINE = "multiline";
-  static const String NUMBER = "number";
-  static const String DECIMAL = "decimal";
-  static const String PHONE = "phone";
-  static const String DATE = "datetime";
-  static const String EMAIL = "emailAddress";
-  static const String URL = "url";
-  static const String PWD = "visiblePassword";
+  static const String text = "text";
+  static const String multi_line = "multiline";
+  static const String number = "number";
+  static const String decimal = "decimal";
+  static const String phone = "phone";
+  static const String date = "datetime";
+  static const String email = "emailAddress";
+  static const String url = "url";
+  static const String password = "visiblePassword";
 }

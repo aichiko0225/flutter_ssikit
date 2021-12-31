@@ -1,10 +1,8 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_ssikit/src/constants/ssi_asset_constants.dart';
+import 'package:flutter_ssikit/src/theme/ssi_theme.dart';
+import 'package:flutter_ssikit/src/utils/ssi_tools.dart';
 
-import '../../../constants/ssi_asset_constants.dart';
-import '../../../theme/ssi_theme_configurator.dart';
-import '../../../theme/base/ssi_text_style.dart';
-import '../../../utils/ssi_tools.dart';
-import '../../../theme/configs/ssi_form_config.dart';
 import '../base/ssi_form_item_type.dart';
 import '../base/input_item_interface.dart';
 
@@ -107,7 +105,7 @@ class SsiFormUtil {
   }
 
   /// 录入项是否可编辑
-  static bool isEdit(bool isEdit) {
+  static bool isEdit(bool? isEdit) {
     if (isEdit == null) {
       return true;
     }
@@ -187,31 +185,31 @@ class SsiFormUtil {
     }
 
     switch (type) {
-      case SsiInputType.TEXT:
+      case SsiInputType.text:
         inputType = TextInputType.text;
         break;
-      case SsiInputType.MULTI_LINE:
+      case SsiInputType.multi_line:
         inputType = TextInputType.multiline;
         break;
-      case SsiInputType.NUMBER:
+      case SsiInputType.number:
         inputType = TextInputType.number;
         break;
-      case SsiInputType.DECIMAL:
-        inputType = TextInputType.numberWithOptions(decimal: true);
+      case SsiInputType.decimal:
+        inputType = const TextInputType.numberWithOptions(decimal: true);
         break;
-      case SsiInputType.PHONE:
+      case SsiInputType.phone:
         inputType = TextInputType.phone;
         break;
-      case SsiInputType.DATE:
+      case SsiInputType.date:
         inputType = TextInputType.datetime;
         break;
-      case SsiInputType.EMAIL:
+      case SsiInputType.email:
         inputType = TextInputType.emailAddress;
         break;
-      case SsiInputType.URL:
+      case SsiInputType.url:
         inputType = TextInputType.url;
         break;
-      case SsiInputType.PWD:
+      case SsiInputType.password:
         inputType = TextInputType.visiblePassword;
         break;
       default:
