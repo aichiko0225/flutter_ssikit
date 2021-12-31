@@ -2,6 +2,7 @@ import 'package:flutter_ssikit/src/theme/configs/ssi_common_config.dart';
 import 'package:flutter_ssikit/src/theme/ssi_theme.dart';
 import 'package:flutter_ssikit/src/theme/ssi_theme_configurator.dart';
 
+import 'ssi_form_config.dart';
 import 'ssi_picker_config.dart';
 
 /// 描述: 全局配置
@@ -17,9 +18,12 @@ class SsiAllThemeConfig {
 
   SsiPickerConfig? pickerConfig;
 
+  SsiFormItemConfig? formItemConfig;
+
   SsiAllThemeConfig(
       {this.commonConfig,
       this.pickerConfig,
+      this.formItemConfig,
       String configId = SsiThemeConfigurator.GLOBAL_CONFIG_ID});
 
   void initThemeConfig(String configId) {}

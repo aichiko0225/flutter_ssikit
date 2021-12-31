@@ -1,7 +1,32 @@
 import 'package:flutter/material.dart';
+import '../theme/ssi_theme.dart';
 import '../constants/ssi_strings_constants.dart';
 
 class SsikitTools {
+
+  /// 将 icon 根据主题色变色后返回
+  static Image getAssetImageWithBandColor(String assetFilePath,
+      {String configId = SsiThemeConfigurator.GLOBAL_CONFIG_ID}) {
+    SsiCommonConfig? commonConfig =
+        SsiThemeConfigurator.instance.getConfig(configId: configId)?.commonConfig;
+    if (!assetFilePath.startsWith("assets")) {
+      assetFilePath = "assets/$assetFilePath";
+    }
+    return getAssetImageWithColor(assetFilePath, commonConfig?.brandPrimary);
+  }
+
+  /// 将 icon 根据传入颜色变后返回
+  static Image getAssetImageWithColor(String assetFilePath, Color? color) {
+    if (!assetFilePath.startsWith("assets")) {
+      assetFilePath = "assets/$assetFilePath";
+    }
+    return Image.asset(
+      assetFilePath,
+      color: color,
+      package: SsiStrings.flutterPackageName,
+      scale: 3.0,
+    );
+  }
 
   /// imgAssetPath: assets资源文件路径
   /// package 访问某个package里的资源，这里默认flutter_alliance_package
@@ -16,6 +41,20 @@ class SsikitTools {
       fit: fit,
       scale: 3.0,
       gaplessPlayback: gaplessPlayback,
+    );
+  }
+
+  static Image getAssetSizeImage(String assetFilePath, double w, double h, {Color? color}) {
+    if (!assetFilePath.startsWith("assets")) {
+      assetFilePath = "assets/$assetFilePath";
+    }
+    return Image.asset(
+      assetFilePath,
+      package: SsiStrings.flutterPackageName,
+//      scale: 3.0,
+      width: w,
+      height: h,
+      color: color,
     );
   }
 

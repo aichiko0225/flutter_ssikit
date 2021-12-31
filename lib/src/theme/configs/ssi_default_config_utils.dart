@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../components/picker/base/ssi_picker_constants.dart';
 import '../../theme/base/ssi_text_style.dart';
+import 'ssi_form_config.dart';
 import 'ssi_all_config.dart';
 import 'ssi_common_config.dart';
 import 'ssi_picker_config.dart';
@@ -9,7 +10,7 @@ import 'ssi_picker_config.dart';
 class SsiDefaultConfigUtils {
   ///  默认全局配置
   static SsiAllThemeConfig defaultAllConfig = SsiAllThemeConfig(
-      commonConfig: defaultCommonConfig, pickerConfig: defaultPickerConfig);
+      commonConfig: defaultCommonConfig, pickerConfig: defaultPickerConfig, formItemConfig: defaultFormItemConfig);
 
   /// 全局默认配置
   static SsiCommonConfig defaultCommonConfig = SsiCommonConfig(
@@ -139,6 +140,53 @@ class SsiDefaultConfigUtils {
     iconSizeSm: 14,
     iconSizeMd: 16,
     iconSizeLg: 32,
+  );
+
+///******** 以下是子配置项 ********///
+
+  /// 表单项默认配置
+  static SsiFormItemConfig defaultFormItemConfig = SsiFormItemConfig(
+    headTitleTextStyle: SsiTextStyle(
+        color: defaultCommonConfig.colorTextBase, fontSize: defaultCommonConfig.fontSizeHead),
+    titleTextStyle: SsiTextStyle(
+        color: defaultCommonConfig.colorTextBase, fontSize: defaultCommonConfig.fontSizeSubHead),
+    subTitleTextStyle: SsiTextStyle(
+        color: defaultCommonConfig.colorTextSecondary,
+        fontSize: defaultCommonConfig.fontSizeCaption),
+    errorTextStyle: SsiTextStyle(
+        color: defaultCommonConfig.brandError, fontSize: defaultCommonConfig.fontSizeCaption),
+    hintTextStyle: SsiTextStyle(
+      color: defaultCommonConfig.colorTextHint,
+      fontSize: defaultCommonConfig.fontSizeSubHead,
+    ),
+    contentTextStyle: SsiTextStyle(
+        color: defaultCommonConfig.colorTextBase, fontSize: defaultCommonConfig.fontSizeSubHead),
+    optionsMiddlePadding: EdgeInsets.only(left: defaultCommonConfig.hSpacingMd ?? 16),
+    optionTextStyle: SsiTextStyle(
+        height: 1.3,
+        color: defaultCommonConfig.colorTextBase,
+        fontSize: defaultCommonConfig.fontSizeSubHead),
+    optionSelectedTextStyle: SsiTextStyle(
+        height: 1.3,
+        color: defaultCommonConfig.brandPrimary,
+        fontSize: defaultCommonConfig.fontSizeSubHead),
+    formPadding: EdgeInsets.only(
+        left: 0,
+        top: defaultCommonConfig.vSpacingLg ?? 14,
+        right: defaultCommonConfig.hSpacingLg ?? 20,
+        bottom: defaultCommonConfig.vSpacingLg ?? 14),
+    titlePaddingSm: EdgeInsets.only(left: 10),
+    titlePaddingLg: EdgeInsets.only(left: defaultCommonConfig.hSpacingLg ?? 20),
+    subTitlePadding:
+        EdgeInsets.only(left: defaultCommonConfig.hSpacingLg ?? 20, top: defaultCommonConfig.vSpacingXs ?? 4),
+    errorPadding:
+        EdgeInsets.only(left: defaultCommonConfig.hSpacingLg ?? 20, top: defaultCommonConfig.vSpacingXs ?? 4),
+    disableTextStyle: SsiTextStyle(
+      color: defaultCommonConfig.colorTextDisabled,
+      fontSize: defaultCommonConfig.fontSizeSubHead,
+    ),
+    tipsTextStyle: SsiTextStyle(
+        color: defaultCommonConfig.colorTextSecondary, fontSize: defaultCommonConfig.fontSizeBase),
   );
 
   static SsiPickerConfig defaultPickerConfig = SsiPickerConfig(
