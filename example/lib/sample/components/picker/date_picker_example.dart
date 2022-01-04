@@ -84,7 +84,7 @@ class DatePickerExamplePage extends StatelessWidget {
 //  }
 
   _showPicker(BuildContext context, SsiDateTimePickerMode mode) {
-    String format;
+    String format = 'yyyy-MMMM-dd';
     const String MIN_DATETIME = '2020-01-15 00:00:00';
     const String MAX_DATETIME = '2021-12-31 23:59:59';
     switch (mode) {

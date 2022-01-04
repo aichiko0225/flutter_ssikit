@@ -9,7 +9,7 @@ typedef DateRangeValueCallback = Function(DateTime startDateTime, DateTime endDa
 typedef DateRangeSideValueCallback = Function(DateTime selectDateTime, List<int> selectedIndex);
 
 /// Pressed cancel callback.
-typedef DateVoidCallback = Function();
+typedef DateVoidCallback = void Function();
 
 /// Default value of minimum datetime.
 const String DATE_PICKER_MIN_DATETIME = "1900-01-01 00:00:00";
@@ -24,7 +24,7 @@ const String DATETIME_PICKER_DATE_FORMAT = 'yyyy-MM-dd';
 const String DATETIME_PICKER_TIME_FORMAT = 'HH:mm:ss';
 
 /// Default value of datetime format
-const String DATETIME_PICKER_DATETIME_FORMAT = 'yyyyMMdd HH:mm:ss';
+const String DATETIME_PICKER_DATETIME_FORMAT = 'yyyy-MM-dd HH:mm:ss';
 
 /// Default value of date format
 const String DATETIME_RANGE_PICKER_DATE_FORMAT = 'MM-dd';
