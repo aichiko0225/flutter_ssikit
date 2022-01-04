@@ -1,4 +1,5 @@
 import 'package:flutter_ssikit/src/theme/ssi_theme.dart';
+import 'package:flutter_ssikit/src/utils/i18n/ssi_date_picker_i18n.dart';
 
 import 'ssi_picker_title_config.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +8,9 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class SsiPickerTitle extends StatelessWidget {
+  
   final SsiPickerTitleConfig pickerTitleConfig;
-
+  final DateTimePickerLocale locale;
   final VoidCallback? onCancel, onConfirm;
 
   SsiPickerConfig? themeData;
@@ -17,6 +19,7 @@ class SsiPickerTitle extends StatelessWidget {
       {Key? key,
       this.onCancel,
       this.onConfirm,
+      this.locale = DateTimePickerLocale.zh_cn,
       this.pickerTitleConfig = SsiPickerTitleConfig.defaultConfig,
       SsiPickerConfig? themeData})
       : super(key: key) {

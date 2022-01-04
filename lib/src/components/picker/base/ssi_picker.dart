@@ -415,11 +415,14 @@ class _CupertinoPickerSemantics extends SingleChildRenderObjectWidget {
 class _RenderCupertinoPickerSemantics extends RenderProxyBox {
 
   _RenderCupertinoPickerSemantics(FixedExtentScrollController controller, this._textDirection) {
+    _controller = controller;
+    _controller.addListener(_handleScrollUpdate);
     this.controller = controller;
   }
 
-  FixedExtentScrollController get controller => _controller;
   late FixedExtentScrollController _controller;
+
+  FixedExtentScrollController get controller => _controller;
 
   set controller(FixedExtentScrollController value) {
     if (value == _controller) return;

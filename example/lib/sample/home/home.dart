@@ -3,6 +3,7 @@ import 'package:flutter_ssikit_example/sample/components/actionsheet/actionsheet
 import 'package:flutter_ssikit_example/sample/components/form/text_input_example.dart';
 import 'package:flutter_ssikit_example/sample/components/noticebar/ssi_notice_bar_example.dart';
 import 'package:flutter_ssikit_example/sample/components/picker/cutomer_bottom_picker_example.dart';
+import 'package:flutter_ssikit_example/sample/components/picker/date_picker_example.dart';
 import '/sample/components/content/text_expanded_example.dart';
 import '/sample/components/toast/toast_example.dart';
 
@@ -22,7 +23,10 @@ class HomePage extends StatelessWidget {
     'ActionSheetExample': (context) {
       return ActionSheetEntryPage('ActionSheet示例');
     },
-    'PickerExamplePage': (context) {
+    'DatePickerExample': (context) {
+      return DatePickerExamplePage('时间选择器');
+    },
+    'CustomPickerExamplePage': (context) {
       return CustomPickerExamplePage();
     },
     'TextInputExamplePage': (context) {
