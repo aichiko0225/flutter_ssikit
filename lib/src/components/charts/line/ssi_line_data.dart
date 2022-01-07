@@ -43,7 +43,6 @@ class SsiPointData {
       this.pointTextStyle,
       this.isClickable: true,
       required this.lineTouchData}) {
-    pointText ??= '$y';
     pointTextStyle ??= TextStyle(
         fontWeight: FontWeight.w500,
         fontSize: 12,
@@ -124,7 +123,6 @@ class SsiPointsLine {
       this.isShowPointText = false,
       required this.shaderColors,
       this.lineColor = Colors.purple}) {
-    lineColor ??= Colors.purple;
     pointColor ??= lineColor;
     pointInnerColor ??= lineColor;
     pointInnerRadius ??= pointRadius - 1.5;

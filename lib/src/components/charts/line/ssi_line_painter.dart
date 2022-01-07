@@ -159,13 +159,6 @@ class SsiLinePainter extends SsiBasePainter {
     xDialColor ??= SsiThemeConfigurator.instance.getConfig()?.commonConfig?.colorTextBase;
     yDialColor ??= SsiThemeConfigurator.instance.getConfig()?.commonConfig?.colorTextSecondary;
     hintLineColor ??= SsiThemeConfigurator.instance.getConfig()?.commonConfig?.colorTextBase;
-    hintLineSolid ??= true;
-    xyLineWidth ??= 0.5;
-    xDialMin ??= 0;
-    xDialMax ??= 1;
-
-    yDialMin ??= 0;
-    yDialMax ??= 1;
   }
 
   ///计算边界
@@ -206,7 +199,7 @@ class SsiLinePainter extends SsiBasePainter {
               pointArr.add(Point(xPosition, yPosition));
             }
           } else {
-            var xScaleCount = item.points?.length ?? 0;
+            var xScaleCount = item.points.length;
             var W = _fixedWidth /
                 (xScaleCount > 1 ? (xScaleCount - 1) : 1); //两个点之间的x方向距离
             for (var i = 0; i < item.points.length; i++) {
@@ -522,10 +515,10 @@ class SsiLinePainter extends SsiBasePainter {
             tpX.paint(
                 canvas,
                 Offset(
-                    (item.points[i].offset?.dx ?? 0) +
+                    (item.points[i].offset.dx) +
                         _linePointPositions[lineIndex][i].x -
                         tpX.width / 2,
-                    (item.points[i].offset?.dy ?? 0) +
+                    (item.points[i].offset.dy) +
                         _linePointPositions[lineIndex][i].y +
                         adjustOffset));
           }

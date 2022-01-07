@@ -156,8 +156,8 @@ class SsiBrokenLineState extends State<SsiBrokenLine> {
     );
     //y 轴宽度 = Y 轴刻度宽度+ chartLeftPadding（SingleChildScrollView padding）+ y 轴偏移量 yAxisWidth
     var yWidth = widget.size.width +
-        (widget.contentPadding?.left ?? 10) +
-        (widget.yHintLineOffset ?? 20.0);
+        (widget.contentPadding.left) +
+        (widget.yHintLineOffset);
     return Stack(
       children: [
         CustomPaint(
@@ -173,12 +173,12 @@ class SsiBrokenLineState extends State<SsiBrokenLine> {
               : null,
         ),
         Padding(
-          padding: EdgeInsets.only(left: widget.yHintLineOffset ?? 20.0),
+          padding: EdgeInsets.only(left: widget.yHintLineOffset),
           child: SingleChildScrollView(
             padding: EdgeInsets.only(
-                left: widget.contentPadding?.left ?? 10,
+                left: widget.contentPadding.left,
                 bottom: 25,
-                right: widget.contentPadding?.right ?? 10),
+                right: widget.contentPadding.right),
             scrollDirection: Axis.horizontal,
             child: GestureDetector(
               onPanDown: (DragDownDetails e) {
@@ -204,14 +204,14 @@ class SsiBrokenLineState extends State<SsiBrokenLine> {
                 }
               },
               onLongPressUp: () {
-                if (widget.isTipWindowAutoDismiss ?? true) {
+                if (widget.isTipWindowAutoDismiss) {
                   pointSelectIndex = -1;
                   lineSelectIndex = -1;
                   setState(() {});
                 }
               },
               onTapUp: (tapUpDetail) {
-                if (widget.isTipWindowAutoDismiss ?? true) {
+                if (widget.isTipWindowAutoDismiss) {
                   pointSelectIndex = -1;
                   lineSelectIndex = -1;
                   setState(() {});
@@ -323,16 +323,16 @@ class SsiBrokenLineState extends State<SsiBrokenLine> {
     if (selectY <= (startY - endY) / 2) {
       y = selectY + padding;
     } else {
-      y = selectY - (lineTouchData?.tipWindowSize?.height ?? 0.0) - padding;
+      y = selectY - (lineTouchData.tipWindowSize.height) - padding;
     }
 
     if (selectX <= (endX - startX) / 2) {
       x = selectX + padding;
     } else {
-      x = selectX - (lineTouchData?.tipWindowSize?.width ?? 0.0) - padding;
+      x = selectX - (lineTouchData.tipWindowSize.width) - padding;
     }
 
-    lineTouchData.x = x + lineTouchData.tipOffset.dx ?? 0;
-    lineTouchData.y = y + lineTouchData.tipOffset.dy ?? 0;
+    lineTouchData.x = x + lineTouchData.tipOffset.dx;
+    lineTouchData.y = y + lineTouchData.tipOffset.dy;
   }
 }

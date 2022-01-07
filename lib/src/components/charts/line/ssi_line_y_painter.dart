@@ -107,7 +107,7 @@ class SsiLineYPainter extends SsiBasePainter {
 
     /// 如果展示y刻度文本，则左侧默认预留 20 像素高度展示x刻度
     if (isShowYDialText) {
-      _startX = yHintLineOffset ?? 20.0;
+      _startX = yHintLineOffset;
     }
 
     /// 如果展示x刻度文本，则底部预留 20 像素高度展示x刻度
