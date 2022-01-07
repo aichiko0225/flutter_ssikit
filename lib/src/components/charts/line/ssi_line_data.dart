@@ -28,7 +28,7 @@ class SsiPointData {
   String pointText;
 
   /// 点展示内容样式
-  TextStyle pointTextStyle;
+  TextStyle? pointTextStyle;
 
   /// 折线节点的点击击事件是否可用
   bool isClickable;
@@ -40,7 +40,7 @@ class SsiPointData {
       this.y = 0,
       this.offset = const Offset(0, 0),
       required this.pointText,
-      required this.pointTextStyle,
+      this.pointTextStyle,
       this.isClickable: true,
       required this.lineTouchData}) {
     pointText ??= '$y';

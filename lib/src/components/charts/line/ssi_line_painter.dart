@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ssikit/src/components/charts/line/ssi_base_painter.dart';
 import 'package:flutter_ssikit/src/components/charts/line/ssi_line_data.dart';
 import 'package:path_drawing/path_drawing.dart';
+import '../../../../flutter_ssikit.dart';
 import 'monotone_x.dart';
 
 class SsiLinePainter extends SsiBasePainter {
@@ -15,10 +16,10 @@ class SsiLinePainter extends SsiBasePainter {
   double xyLineWidth = 0.5;
 
   /// x轴的颜色
-  Color xDialColor;
+  Color? xDialColor;
 
   ///y轴的颜色
-  Color yDialColor;
+  Color? yDialColor;
 
   /// 刻度的宽度或者高度
   double rulerWidth;
@@ -42,7 +43,7 @@ class SsiLinePainter extends SsiBasePainter {
   bool hintLineSolid;
 
   /// 辅助线颜色
-  Color hintLineColor;
+  Color? hintLineColor;
 
   /// 绘制线条的参数内容
   List<SsiPointsLine> lines;
@@ -87,8 +88,8 @@ class SsiLinePainter extends SsiBasePainter {
     this.lineSelectIndex = -1,
     this.pointSelectIndex = -1,
     this.showPointDashLine = true,
-    this.xDialColor = Colors.black,
-    this.yDialColor = Colors.black,
+    this.xDialColor,
+    this.yDialColor,
     this.rulerWidth = 4,
     this.xDialMin = 0,
     this.xDialMax = 1,
@@ -149,8 +150,22 @@ class SsiLinePainter extends SsiBasePainter {
   ///初始化
   void _init(Canvas canvas, Size size, Paint xyPaint) {
     //初始化参数
+    _initValue();
     _initBorder(size);
     _drawXy(canvas, xyPaint); //坐标轴
+  }
+
+  void _initValue() {
+    xDialColor ??= SsiThemeConfigurator.instance.getConfig()?.commonConfig?.colorTextBase;
+    yDialColor ??= SsiThemeConfigurator.instance.getConfig()?.commonConfig?.colorTextSecondary;
+    hintLineColor ??= SsiThemeConfigurator.instance.getConfig()?.commonConfig?.colorTextBase;
+    hintLineSolid ??= true;
+    xyLineWidth ??= 0.5;
+    xDialMin ??= 0;
+    xDialMax ??= 1;
+
+    yDialMin ??= 0;
+    yDialMax ??= 1;
   }
 
   ///计算边界
@@ -287,14 +302,14 @@ class SsiLinePainter extends SsiBasePainter {
   void _drawXy(Canvas canvas, Paint paint) {
     if (isShowHintY) {
       canvas.drawLine(Offset(_startX, _startY),
-          Offset(_startX, _endY - basePadding), paint..color = yDialColor); //y轴
+          Offset(_startX, _endY - basePadding), paint..color = yDialColor!); //y轴
     }
 
     if (lines != null && lines.isNotEmpty) {
       //绘制x轴的文字部分
       for (var item in lines) {
         if (item.points != null && item.points.isNotEmpty && item.isShowXDial) {
-          _drawXRuler(canvas, paint..color = xDialColor, item.points);
+          _drawXRuler(canvas, paint..color = xDialColor!, item.points);
         }
       }
     }
@@ -337,14 +352,14 @@ class SsiLinePainter extends SsiBasePainter {
         ..moveTo(xPosition, _startY)
         ..lineTo(xPosition, _endY - basePadding);
       if (hintLineSolid) {
-        canvas.drawPath(tempPath, paint..color = hintLineColor);
+        canvas.drawPath(tempPath, paint..color = hintLineColor!);
       } else {
         canvas.drawPath(
           dashPath(
             tempPath,
             dashArray: CircularIntervalList<double>(<double>[4.0, 2.0]),
           ),
-          paint..color = hintLineColor,
+          paint..color = hintLineColor!,
         );
       }
     }
@@ -352,7 +367,7 @@ class SsiLinePainter extends SsiBasePainter {
     // 绘制 x轴刻度
     if (isShowHintX) {
       canvas.drawLine(Offset(xPosition, _startY),
-          Offset(xPosition, _startY + rulerWidth), paint..color = xDialColor);
+          Offset(xPosition, _startY + rulerWidth), paint..color = xDialColor!);
     }
   }
 
@@ -370,7 +385,7 @@ class SsiLinePainter extends SsiBasePainter {
               .createShader(
                   Rect.fromLTWH(_startX, _endY, _fixedWidth, _fixedHeight));
           canvas
-            ..drawPath(
+            .drawPath(
                 shadowPathElement,
                 Paint()
                   ..shader = shader

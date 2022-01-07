@@ -157,7 +157,7 @@ class SsiBrokenLineState extends State<SsiBrokenLine> {
     //y 轴宽度 = Y 轴刻度宽度+ chartLeftPadding（SingleChildScrollView padding）+ y 轴偏移量 yAxisWidth
     var yWidth = widget.size.width +
         (widget.contentPadding?.left ?? 10) +
-        (widget.yHintLineOffset == null ? 20.0 : widget.yHintLineOffset);
+        (widget.yHintLineOffset ?? 20.0);
     return Stack(
       children: [
         CustomPaint(
@@ -246,7 +246,7 @@ class SsiBrokenLineState extends State<SsiBrokenLine> {
 
   Widget _buildTouchTipWidget(SsiPointData pointData) {
     Widget touchTipWidget;
-    SsiLineTouchData? selectLinePoint = pointData?.lineTouchData;
+    SsiLineTouchData? selectLinePoint = pointData.lineTouchData;
     if (selectLinePoint != null &&
         pointData.isClickable != null &&
         pointData.isClickable &&
@@ -257,18 +257,18 @@ class SsiBrokenLineState extends State<SsiBrokenLine> {
           top: selectLinePoint.y,
           left: selectLinePoint.x,
           child: Container(
-            height: selectLinePoint.tipWindowSize?.height,
-            width: selectLinePoint.tipWindowSize?.width,
-            padding: EdgeInsets.only(left: 10, right: 10, top: 8, bottom: 8),
+            height: selectLinePoint.tipWindowSize.height,
+            width: selectLinePoint.tipWindowSize.width,
+            padding: const EdgeInsets.only(left: 10, right: 10, top: 8, bottom: 8),
             child: Center(child: Text(content)),
             decoration: BoxDecoration(
               color: Colors.white,
-              border: Border.all(color: Color(0xFFDDDDDD), width: 0.5),
+              border: Border.all(color: const Color(0xFFDDDDDD), width: 0.5),
               borderRadius: BorderRadius.circular(3.0),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.6),
-                  offset: Offset(0.0, 2.0), //阴影xy轴偏移量
+                  offset: const Offset(0.0, 2.0), //阴影xy轴偏移量
                   blurRadius: 4.0, //阴影模糊程度
                 )
               ],
@@ -279,18 +279,18 @@ class SsiBrokenLineState extends State<SsiBrokenLine> {
         touchTipWidget = Positioned(
             top: selectLinePoint.y,
             left: selectLinePoint.x,
-            child: Container(
-                height: selectLinePoint.tipWindowSize?.height,
-                width: selectLinePoint.tipWindowSize?.width,
+            child: SizedBox(
+                height: selectLinePoint.tipWindowSize.height,
+                width: selectLinePoint.tipWindowSize.width,
                 child: content));
       } else {
-        touchTipWidget = Container(
+        touchTipWidget = const SizedBox(
           height: 0,
           width: 0,
         );
       }
     } else {
-      touchTipWidget = Container(
+      touchTipWidget = const SizedBox(
         height: 0,
         width: 0,
       );
