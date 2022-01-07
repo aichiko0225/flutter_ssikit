@@ -71,7 +71,7 @@ class SsiBrokenLine extends StatefulWidget {
   final bool isTipWindowAutoDismiss;
 
   SsiBrokenLine({
-    required Key key,
+    Key? key,
     required this.size,
     required this.lines,
     this.contentPadding = const EdgeInsets.only(left: 10, right: 10),
