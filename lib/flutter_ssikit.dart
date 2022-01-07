@@ -38,7 +38,6 @@ export 'src/components/form/base/input_item_interface.dart';
 export 'src/components/form/base/ssi_form_item_type.dart';
 export 'src/components/form/ssi_text_input_item.dart';
 export 'src/components/form/ssi_text_select_item.dart';
-export 'src/components/form//ssi_text_input_item.dart';
 
 //图表相关
 export 'src/components/charts/line/monotone_x.dart';
