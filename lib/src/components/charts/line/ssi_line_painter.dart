@@ -254,10 +254,10 @@ class SsiLinePainter extends SsiBasePainter {
             shadowPaths: shadowPaths,
             shaderColors: item.shaderColors,
             points: item.isShowPoint ? pointArr : null,
-            pointColor: item.pointColor,
-            pointInnerColor: item.pointInnerColor,
+            pointColor: item.pointColor!,
+            pointInnerColor: item.pointInnerColor!,
             pointRadius: item.pointRadius,
-            pointInnerRadius: item.pointInnerRadius));
+            pointInnerRadius: item.pointInnerRadius!));
       }
     }
   }

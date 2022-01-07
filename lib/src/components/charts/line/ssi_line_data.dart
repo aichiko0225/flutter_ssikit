@@ -87,16 +87,16 @@ class SsiPointsLine {
   Color lineColor;
 
   /// 点外圈的颜色
-  Color pointColor;
+  Color? pointColor;
 
   /// 点的外半径参数
   double pointRadius;
 
   /// 点内圈的颜色
-  Color pointInnerColor;
+  Color? pointInnerColor;
 
   /// 点内圈的半径
-  double pointInnerRadius;
+  double? pointInnerRadius;
 
   /// 是否显示x轴的文字，用来处理多个线条绘制的时候，同一x轴坐标不需要绘制多次，则只需要将多条线中一个标记绘制即可
   bool isShowXDial;
@@ -115,9 +115,9 @@ class SsiPointsLine {
       {this.isShowXDial = false,
       this.lineWidth = 2,
       this.pointRadius = 0,
-      required this.pointColor,
-      required this.pointInnerRadius,
-      required this.pointInnerColor,
+      this.pointColor,
+      this.pointInnerRadius,
+      this.pointInnerColor,
       this.isCurve = false,
       required this.points,
       this.isShowPoint: true,
