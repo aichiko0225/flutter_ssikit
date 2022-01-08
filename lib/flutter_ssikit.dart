@@ -18,6 +18,7 @@ export 'src/components/actionsheet/ssi_common_action_sheet.dart';
 export 'src/components/picker/ssi_bottom_picker.dart';
 export 'src/components/picker/ssi_bottom_write_picker.dart';
 export 'src/components/picker/ssi_picker_cliprrect.dart';
+export 'src/components/picker/ssi_multi_picker.dart';
 export 'src/components/picker/base/ssi_picker_title_config.dart';
 export 'src/components/picker/time_picker/date_picker/ssi_date_picker.dart';
 export 'src/components/picker/time_picker/ssi_date_time_formatter.dart';
