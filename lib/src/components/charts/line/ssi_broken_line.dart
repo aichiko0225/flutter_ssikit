@@ -210,13 +210,13 @@ class SsiBrokenLineState extends State<SsiBrokenLine> {
                   setState(() {});
                 }
               },
-              onTapUp: (tapUpDetail) {
-                if (widget.isTipWindowAutoDismiss) {
-                  pointSelectIndex = -1;
-                  lineSelectIndex = -1;
-                  setState(() {});
-                }
-              },
+              // onTapUp: (tapUpDetail) {
+              //   if (widget.isTipWindowAutoDismiss) {
+              //     pointSelectIndex = -1;
+              //     lineSelectIndex = -1;
+              //     setState(() {});
+              //   }
+              // },
               child: Stack(children: [
                 CustomPaint(
                   size: widget.size,
