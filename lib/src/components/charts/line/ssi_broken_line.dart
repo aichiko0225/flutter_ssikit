@@ -20,7 +20,7 @@ class SsiBrokenLine extends StatefulWidget {
   final EdgeInsets contentPadding;
 
   /// 绘制的背景色
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// xy轴线条的宽度，默认 2
   final double xyDialLineWidth;
@@ -75,7 +75,7 @@ class SsiBrokenLine extends StatefulWidget {
     required this.size,
     required this.lines,
     this.contentPadding = const EdgeInsets.only(left: 10, right: 10),
-    this.backgroundColor = Colors.white,
+    this.backgroundColor,
     this.xyDialLineWidth = 2,
     this.xDialColor = Colors.black,
     this.yDialColor = Colors.black,
@@ -210,13 +210,13 @@ class SsiBrokenLineState extends State<SsiBrokenLine> {
                   setState(() {});
                 }
               },
-              // onTapUp: (tapUpDetail) {
-              //   if (widget.isTipWindowAutoDismiss) {
-              //     pointSelectIndex = -1;
-              //     lineSelectIndex = -1;
-              //     setState(() {});
-              //   }
-              // },
+              onTapUp: (tapUpDetail) {
+                if (widget.isTipWindowAutoDismiss) {
+                  pointSelectIndex = -1;
+                  lineSelectIndex = -1;
+                  setState(() {});
+                }
+              },
               child: Stack(children: [
                 CustomPaint(
                   size: widget.size,

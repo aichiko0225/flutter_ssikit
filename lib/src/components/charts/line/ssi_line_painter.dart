@@ -245,7 +245,7 @@ class SsiLinePainter extends SsiBasePainter {
             pathColor: item.lineColor,
             pathWidth: item.lineWidth,
             shadowPaths: shadowPaths,
-            shaderColors: item.shaderColors,
+            shaderColors: item.shaderColors!,
             points: item.isShowPoint ? pointArr : null,
             pointColor: item.pointColor!,
             pointInnerColor: item.pointInnerColor!,
@@ -374,7 +374,7 @@ class SsiLinePainter extends SsiBasePainter {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   tileMode: TileMode.clamp,
-                  colors: element.shaderColors)
+                  colors: element.shaderColors!)
               .createShader(
                   Rect.fromLTWH(_startX, _endY, _fixedWidth, _fixedHeight));
           canvas
@@ -569,7 +569,7 @@ class LineCanvasModel {
   double pathWidth;
 
   List<Path> shadowPaths;
-  List<Color> shaderColors;
+  List<Color>? shaderColors;
 
   List<Point>? points;
   Color pointColor;

@@ -1,16 +1,20 @@
+import 'dart:ffi';
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ssikit/flutter_ssikit.dart';
+import "package:intl/intl.dart";
 
 class BrokenLineExamplePage extends StatefulWidget {
   @override
-  _BrokenLineExamplePageState createState() =>
-      _BrokenLineExamplePageState();
+  _BrokenLineExamplePageState createState() => _BrokenLineExamplePageState();
 }
 
 class _BrokenLineExamplePageState extends State<BrokenLineExamplePage> {
   List<String> xAisList = [];
-  List<double> yAisList = [];
+
+  // List<double> yAisList = [];
   List<double> y1List = [];
   List<double> y2List = [];
 
@@ -28,29 +32,21 @@ class _BrokenLineExamplePageState extends State<BrokenLineExamplePage> {
     xAisList.add("09/25");
     xAisList.add("09/30");
 
-    yAisList.add(0);
-    yAisList.add(20);
-    yAisList.add(40);
-    yAisList.add(60);
-    yAisList.add(80);
-    yAisList.add(100);
-
-    y1List.add(25);
-    y1List.add(50);
-    y1List.add(45);
-    y1List.add(55);
-    y1List.add(25);
-    y1List.add(75);
-    y1List.add(82);
+    y1List.add(0);
+    y1List.add(3);
+    y1List.add(2);
+    y1List.add(1);
+    y1List.add(6);
+    y1List.add(2);
+    y1List.add(3);
 
     y2List.add(9);
     y2List.add(89);
     y2List.add(66);
-    y2List.add(29);
+    y2List.add(29.9);
     y2List.add(50);
     y2List.add(14);
     y2List.add(38);
-
   }
 
   @override
@@ -67,9 +63,8 @@ class _BrokenLineExamplePageState extends State<BrokenLineExamplePage> {
             _brokenLineExample1(context),
             const Padding(padding: EdgeInsets.all(5)),
             _brokenLineExample2(context),
-
+            const Padding(padding: EdgeInsets.all(25)),
           ],
-
         ),
       ),
     );
@@ -78,14 +73,15 @@ class _BrokenLineExamplePageState extends State<BrokenLineExamplePage> {
   ////////////////////////////
   Widget _brokenLineExample1(context) {
     var chartLine = SsiBrokenLine(
+      isTipWindowAutoDismiss: false,
       lines: _linesForExample1(),
-      size: Size(MediaQuery.of(context).size.width - 50 * 2,
+      size: Size(MediaQuery.of(context).size.width - 80,
           MediaQuery.of(context).size.height / 5 * 1.6 - 20 * 2),
-      isShowXHintLine: false,
-      yHintLineOffset: 30,
-      yDialValues: _yDialValuesForExample1(yAisList),
+      isShowXHintLine: true,
+      yHintLineOffset: 20,
+      yDialValues: _yDialValuesForExample1(_getMaxValueForExample1(y1List) / 5),
       yDialMin: 0,
-      yDialMax: 100,
+      yDialMax: _getMaxValueForExample1(y1List),
       xDialValues: _xDialValuesForExample1(xAisList),
       xDialMin: 1,
       xDialMax: 7,
@@ -96,7 +92,9 @@ class _BrokenLineExamplePageState extends State<BrokenLineExamplePage> {
       color: Colors.white,
       child: Column(
         children: <Widget>[
-          const SizedBox(height: 14,),
+          const SizedBox(
+            height: 14,
+          ),
           Row(
             children: [
               Container(
@@ -108,8 +106,14 @@ class _BrokenLineExamplePageState extends State<BrokenLineExamplePage> {
                   borderRadius: BorderRadius.circular((1.0)),
                 ),
               ),
-              const SizedBox(width: 10,),
-              const Text('折线图', style: TextStyle(fontSize: 16, color: Color(0xFF333333),fontWeight: FontWeight.bold)),
+              const SizedBox(
+                width: 10,
+              ),
+              const Text('折线图',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Color(0xFF333333),
+                      fontWeight: FontWeight.bold)),
             ],
           ),
           Container(
@@ -117,7 +121,7 @@ class _BrokenLineExamplePageState extends State<BrokenLineExamplePage> {
             child: chartLine,
           )
         ],
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
       ),
     );
   }
@@ -132,7 +136,7 @@ class _BrokenLineExamplePageState extends State<BrokenLineExamplePage> {
       pointRadius: 4,
       isShowPoint: true,
       isCurve: false,
-      points: _setSsiPointDataList(y1List,color1),
+      points: _setSsiPointDataList(y1List, color1),
       shaderColors: [color1.withOpacity(0.3), color1.withOpacity(0.01)],
       lineColor: color1,
     );
@@ -141,36 +145,68 @@ class _BrokenLineExamplePageState extends State<BrokenLineExamplePage> {
     return pointsLineList;
   }
 
-  List<SsiPointData> _setSsiPointDataList(List<double> yList,Color color){
+  double _getMinValueForExample1(List<double> list) {
+    if (list.isEmpty) {
+      return 0;
+    }
+    double minValue = list[0];
+    for (double point in list) {
+      minValue = min(point, minValue);
+    }
+    return minValue;
+  }
+
+  double _getMaxValueForExample1(List<double> list) {
+    if (list.isEmpty) {
+      return 0;
+    }
+    double maxValue = list[0];
+    for (double point in list) {
+      maxValue = max(point, maxValue);
+    }
+    int maxValue2 = ((maxValue / 10).toInt() + 1) * 10;
+
+    if (maxValue <= 12) {
+      return maxValue;
+    } else {
+      if (maxValue2 / 5 * 4 >= maxValue && maxValue2 - 5 > maxValue) {
+        maxValue2 = maxValue2 - 5;
+      }
+    }
+    return maxValue2.toDouble();
+  }
+
+  List<SsiPointData> _setSsiPointDataList(List<double> yList, Color color) {
     List<SsiPointData> ssiPointDatas = [];
     for (int index = 0; index < yList.length; index++) {
-      ssiPointDatas.add(_setSsiPointData(index+1,yList[index],color));
+      ssiPointDatas.add(_setSsiPointData(index + 1, yList[index], color));
     }
     return ssiPointDatas;
   }
 
-  SsiPointData _setSsiPointData(double x,double y,Color color){
+  SsiPointData _setSsiPointData(double x, double y, Color color) {
+    NumberFormat format = NumberFormat();
     return SsiPointData(
-      pointText: y.toString(),
+      pointText: format.format(y),
       x: x,
       y: y,
       lineTouchData: SsiLineTouchData(
         tipWindowSize: const Size(60, 20),
         onTouch: () {
-          return _buildMarker(y.toString(),color);
+          return _buildMarker(format.format(y), color);
         },
       ),
     );
   }
 
-  Container _buildMarker(String value,Color color) {
+  Container _buildMarker(String value, Color color) {
     return Container(
       child: Center(
           child: Text(
-            value+"分",
-            style:
-            const TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Colors.white),
-          )),
+        value + "分",
+        style: const TextStyle(
+            fontSize: 13, fontWeight: FontWeight.bold, color: Colors.white),
+      )),
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(10.0),
@@ -183,20 +219,23 @@ class _BrokenLineExamplePageState extends State<BrokenLineExamplePage> {
     for (int index = 0; index < xList.length; index++) {
       _xDialValue.add(SsiDialItem(
         dialText: xList[index],
-        dialTextStyle: const TextStyle(fontSize: 10.0, color: Color(0xFFA2A2A2)),
-        value: index.toDouble()+1,
+        dialTextStyle:
+            const TextStyle(fontSize: 10.0, color: Color(0xFFA2A2A2)),
+        value: index.toDouble() + 1,
       ));
     }
     return _xDialValue;
   }
 
-  List<SsiDialItem> _yDialValuesForExample1(List<double> yList) {
+  List<SsiDialItem> _yDialValuesForExample1(double itemValue) {
     List<SsiDialItem> _yDialValue = [];
-    for (int index = 0; index < yList.length; index++) {
+    NumberFormat format = NumberFormat();
+    for (int index = 0; index < 6; index++) {
       _yDialValue.add(SsiDialItem(
-        dialText: yList[index].toString(),
-        dialTextStyle: const TextStyle(fontSize: 10.0, color: Color(0xFFA2A2A2)),
-        value: yList[index],
+        dialText:  format.format(itemValue * index),
+          dialTextStyle:
+            const TextStyle(fontSize: 10.0, color: Color(0xFFA2A2A2)),
+        value: itemValue * index,
       ));
     }
     return _yDialValue;
@@ -204,26 +243,35 @@ class _BrokenLineExamplePageState extends State<BrokenLineExamplePage> {
 
   ////////////////////////////
   Widget _brokenLineExample2(context) {
+    List<double> yAisList = [];
+    yAisList.addAll(y1List);
+    yAisList.addAll(y2List);
     var chartLine = SsiBrokenLine(
+      showPointDashLine: false,
+      isTipWindowAutoDismiss: false,
       lines: _linesForExample2(),
-      size: Size(MediaQuery.of(context).size.width - 50 * 2,
+      size: Size(MediaQuery.of(context).size.width - 40 * 2,
           MediaQuery.of(context).size.height / 5 * 1.6 - 20 * 2),
       isShowXHintLine: true,
-      yHintLineOffset: 30,
-      yDialValues: _yDialValuesForExample1(yAisList),
+      // yHintLineOffset: 40,
+      yDialValues:
+          _yDialValuesForExample1(_getMaxValueForExample1(yAisList) / 5),
       yDialMin: 0,
-      yDialMax: 100,
+      yDialMax: _getMaxValueForExample1(yAisList),
       xDialValues: _xDialValuesForExample1(xAisList),
       xDialMin: 1,
-      xDialMax: 7,
+      xDialMax: xAisList.length.toDouble(),
       isHintLineSolid: false,
       isShowYDialText: true,
     );
     return Container(
       color: Colors.white,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          const SizedBox(height: 14,),
+          const SizedBox(
+            height: 14,
+          ),
           Row(
             children: [
               Container(
@@ -235,19 +283,25 @@ class _BrokenLineExamplePageState extends State<BrokenLineExamplePage> {
                   borderRadius: BorderRadius.circular((1.0)),
                 ),
               ),
-              const SizedBox(width: 10,),
-              const Text('多折线图', style: TextStyle(fontSize: 16, color: Color(0xFF333333),fontWeight: FontWeight.bold)),
+              const SizedBox(
+                width: 10,
+              ),
+              const Text('多折线图',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Color(0xFF333333),
+                      fontWeight: FontWeight.bold)),
             ],
           ),
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.fromLTRB(10, 20, 10, 14),
             child: chartLine,
-          )
+          ),
         ],
-        crossAxisAlignment: CrossAxisAlignment.start,
       ),
     );
   }
+
   List<SsiPointsLine> _linesForExample2() {
     SsiPointsLine _pointsLine;
     SsiPointsLine _pointsLine2;
@@ -259,7 +313,7 @@ class _BrokenLineExamplePageState extends State<BrokenLineExamplePage> {
       pointRadius: 4,
       isShowPoint: true,
       isCurve: false,
-      points: _setSsiPointDataList(y1List,color1),
+      points: _setSsiPointDataList(y1List, color1),
       shaderColors: [color1.withOpacity(0.3), color1.withOpacity(0.01)],
       lineColor: color1,
     );
@@ -270,7 +324,7 @@ class _BrokenLineExamplePageState extends State<BrokenLineExamplePage> {
       pointRadius: 4,
       isShowPoint: true,
       isCurve: false,
-      points: _setSsiPointDataList(y2List,color2),
+      points: _setSsiPointDataList(y2List, color2),
       shaderColors: [color2.withOpacity(0.3), color2.withOpacity(0.01)],
       lineColor: color2,
     );
@@ -279,5 +333,4 @@ class _BrokenLineExamplePageState extends State<BrokenLineExamplePage> {
     pointsLineList.add(_pointsLine2);
     return pointsLineList;
   }
-
 }

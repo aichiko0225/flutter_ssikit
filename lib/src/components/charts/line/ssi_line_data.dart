@@ -11,7 +11,10 @@ class SsiDialItem {
   /// x,y 轴刻度值。用于刻度在坐标的真实定位
   double value;
 
-  SsiDialItem({required this.dialText, required this.dialTextStyle, required this.value});
+  SsiDialItem(
+      {required this.dialText,
+      required this.dialTextStyle,
+      required this.value});
 }
 
 class SsiPointData {
@@ -46,13 +49,16 @@ class SsiPointData {
     pointTextStyle ??= TextStyle(
         fontWeight: FontWeight.w500,
         fontSize: 12,
-        color: SsiThemeConfigurator.instance.getConfig()?.commonConfig?.colorTextBase);
+        color: SsiThemeConfigurator.instance
+            .getConfig()
+            ?.commonConfig
+            ?.colorTextBase);
   }
 }
 
 class SsiLineTouchData {
   /// 用于临时存储要展示 tip 内容在坐标的位置
-  double x=0, y=0;
+  double x = 0, y = 0;
 
   /// 要展示 tip 的相对偏移量
   Offset tipOffset;
@@ -64,7 +70,7 @@ class SsiLineTouchData {
   Function() onTouch;
 
   SsiLineTouchData({
-    required this.tipWindowSize,
+    this.tipWindowSize: const Size(60, 40),
     this.tipOffset: const Offset(0, 0),
     required this.onTouch,
   });
@@ -72,7 +78,6 @@ class SsiLineTouchData {
 
 /// 每条线的定义
 class SsiPointsLine {
-
   /// 点集合
   List<SsiPointData> points;
 
@@ -80,7 +85,7 @@ class SsiPointsLine {
   double lineWidth;
 
   /// Line渐变色，从曲线到x轴从上到下的闭合颜色集
-  List<Color> shaderColors;
+  List<Color>? shaderColors;
 
   /// 曲线或折线的颜色
   Color lineColor;
@@ -109,7 +114,6 @@ class SsiPointsLine {
   ///  是否展示节点的文本
   bool isShowPointText;
 
-
   SsiPointsLine(
       {this.isShowXDial = false,
       this.lineWidth = 2,
@@ -121,7 +125,7 @@ class SsiPointsLine {
       required this.points,
       this.isShowPoint: true,
       this.isShowPointText = false,
-      required this.shaderColors,
+      this.shaderColors,
       this.lineColor = Colors.purple}) {
     pointColor ??= lineColor;
     pointInnerColor ??= lineColor;
