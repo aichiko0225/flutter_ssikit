@@ -1,3 +1,4 @@
+import 'package:flutter_ssikit/flutter_ssikit.dart';
 import 'package:flutter_ssikit/src/theme/configs/ssi_common_config.dart';
 import 'package:flutter_ssikit/src/theme/ssi_theme_configurator.dart';
 
@@ -19,10 +20,13 @@ class SsiAllThemeConfig {
 
   SsiFormItemConfig? formItemConfig;
 
+  SsiAppBarConfig? appBarConfig;
+
   SsiAllThemeConfig(
       {this.commonConfig,
       this.pickerConfig,
       this.formItemConfig,
+      this.appBarConfig,
       String configId = SsiThemeConfigurator.GLOBAL_CONFIG_ID});
 
   void initThemeConfig(String configId) {}

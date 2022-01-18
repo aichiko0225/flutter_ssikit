@@ -9,7 +9,7 @@ import 'package:flutter_ssikit/src/constants/ssi_asset_constants.dart';
 import 'package:flutter_ssikit/src/constants/ssi_strings_constants.dart';
 import 'package:flutter_ssikit/src/theme/ssi_theme.dart';
 
-import 'ssi_appbar_config.dart';
+import '../../theme/configs/ssi_appbar_config.dart';
 import 'ssi_appbar_theme.dart';
 
 /// AppBar组件,基于[AppBar]封装。为了解决原生的AppBar对Leading宽度的限制
@@ -219,7 +219,7 @@ class SsiAppBar extends PreferredSize {
         super(key: key, child: _getChild(), preferredSize: _getPreferredSize());
 
   static Size _getPreferredSize() {
-    SsiAppBarConfig _defaultConfig = SsiAppBarConfig.defaultAppBarConfig();
+    SsiAppBarConfig _defaultConfig = SsiAppBarConfig();
     return Size.fromHeight(_defaultConfig.appBarHeight);
   }
 
@@ -229,16 +229,23 @@ class SsiAppBar extends PreferredSize {
 
   @override
   Size get preferredSize {
-    SsiAppBarConfig _defaultConfig =
-        themeData ?? SsiAppBarConfig.defaultAppBarConfig();
+    SsiAppBarConfig _defaultConfig = SsiThemeConfigurator.instance
+            .getConfig()
+            ?.appBarConfig
+            ?.merge(themeData) ??
+        SsiAppBarConfig();
+
     return Size.fromHeight(
         _defaultConfig.appBarHeight + (bottom?.preferredSize.height ?? 0.0));
   }
 
   @override
   Widget build(BuildContext context) {
-    SsiAppBarConfig _defaultConfig =
-        themeData ?? SsiAppBarConfig.defaultAppBarConfig();
+    SsiAppBarConfig _defaultConfig = SsiThemeConfigurator.instance
+            .getConfig()
+            ?.appBarConfig
+            ?.merge(themeData) ??
+        SsiAppBarConfig();
     //当外部传入主题
     if (brightness == Brightness.light) {
       _defaultConfig = _defaultConfig.merge(SsiAppBarConfig.light());
@@ -266,7 +273,10 @@ class SsiAppBar extends PreferredSize {
   @override
   Widget get child {
     SsiAppBarConfig _defaultConfig =
-        themeData ?? SsiAppBarConfig(backgroundColor: backgroundColor);
+        SsiThemeConfigurator.instance
+            .getConfig()
+            ?.appBarConfig
+            ?.merge(themeData) ?? SsiAppBarConfig(backgroundColor: backgroundColor);
     //当外部传入主题
     if (brightness == Brightness.light) {
       _defaultConfig = _defaultConfig.merge(SsiAppBarConfig.light());
@@ -423,8 +433,11 @@ class SsiBackLeading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SsiAppBarConfig _defaultThemeData =
-        themeData ?? SsiAppBarConfig.defaultAppBarConfig();
+    SsiAppBarConfig _defaultThemeData = SsiThemeConfigurator.instance
+            .getConfig()
+            ?.appBarConfig
+            ?.merge(themeData) ??
+        SsiAppBarConfig();
 
     return ConstrainedBox(
       constraints: BoxConstraints.tightFor(
@@ -433,7 +446,10 @@ class SsiBackLeading extends StatelessWidget {
           height: _defaultThemeData.appBarHeight),
       child: IconButton(
         alignment: Alignment.centerRight,
-        icon: child ?? (_defaultThemeData.leadIconBuilder != null ? _defaultThemeData.leadIconBuilder!() : _defaultBackImage()),
+        icon: child ??
+            (_defaultThemeData.leadIconBuilder != null
+                ? _defaultThemeData.leadIconBuilder!()
+                : _defaultBackImage()),
         onPressed: iconPressed ??
             () {
               /// 默认处理了返回按钮，flutter的pop，如果是native打开的话，可能需要单独处理,否则会出现白屏
@@ -448,12 +464,12 @@ class SsiBackLeading extends StatelessWidget {
 
   Widget _defaultBackImage() {
     return Image.asset(
-        SsiAsset.ICON_BACK_BLACK,
-        package: SsiStrings.flutterPackageName,
-        width: SsiAppBarTheme.iconSize,
-        height: SsiAppBarTheme.iconSize,
-        fit: BoxFit.fitHeight,
-      );
+      SsiAsset.ICON_BACK_BLACK,
+      package: SsiStrings.flutterPackageName,
+      width: SsiAppBarTheme.iconSize,
+      height: SsiAppBarTheme.iconSize,
+      fit: BoxFit.fitHeight,
+    );
   }
 }
 
@@ -470,8 +486,11 @@ class SsiDoubleLeading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SsiAppBarConfig _defaultThemeData =
-        themeData ?? SsiAppBarConfig.defaultAppBarConfig();
+    SsiAppBarConfig _defaultThemeData = SsiThemeConfigurator.instance
+            .getConfig()
+            ?.appBarConfig
+            ?.merge(themeData) ??
+        SsiAppBarConfig();
 
     return Container(
       constraints: BoxConstraints.tightFor(
@@ -498,8 +517,11 @@ class SsiAppBarTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SsiAppBarConfig _defaultThemeData =
-        themeData ?? SsiAppBarConfig.defaultAppBarConfig();
+    SsiAppBarConfig _defaultThemeData = SsiThemeConfigurator.instance
+            .getConfig()
+            ?.appBarConfig
+            ?.merge(themeData) ??
+        SsiAppBarConfig();
 
     return ConstrainedBox(
       child: Text(
@@ -534,7 +556,10 @@ class SsiIconAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SsiAppBarConfig _defaultThemeData =
-        themeData ?? SsiAppBarConfig(iconSize: size);
+        SsiThemeConfigurator.instance
+            .getConfig()
+            ?.appBarConfig
+            ?.merge(themeData) ?? SsiAppBarConfig(iconSize: size);
 
     return ConstrainedBox(
       constraints: BoxConstraints.tightFor(
@@ -561,8 +586,10 @@ class SsiTextAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SsiAppBarConfig _defaultThemeData =
-        themeData ?? SsiAppBarConfig.defaultAppBarConfig();
+    SsiAppBarConfig _defaultThemeData = SsiThemeConfigurator.instance
+            .getConfig()
+            ?.appBarConfig
+            ?.merge(themeData) ?? SsiAppBarConfig();
 
     return GestureDetector(
       child: Container(
@@ -613,8 +640,10 @@ class _SsiSearchResultAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SsiAppBarConfig _defaultConfig =
-        appBarConfig ?? SsiAppBarConfig.defaultAppBarConfig();
+    SsiAppBarConfig _defaultConfig = SsiThemeConfigurator.instance
+            .getConfig()
+            ?.appBarConfig
+            ?.merge(appBarConfig) ?? SsiAppBarConfig();
 
     if (brightness == Brightness.light) {
       _defaultConfig = _defaultConfig.merge(SsiAppBarConfig.light());

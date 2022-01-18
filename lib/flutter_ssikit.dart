@@ -55,7 +55,6 @@ export 'src/components/popup/ssi_overlay_window.dart';
 //导航栏
 export 'src/components/navbar/ssi_appbar.dart';
 export 'src/components/navbar/ssi_empty_appbar.dart';
-export 'src/components/navbar/ssi_appbar_config.dart';
 
 
 import 'package:flutter/services.dart';

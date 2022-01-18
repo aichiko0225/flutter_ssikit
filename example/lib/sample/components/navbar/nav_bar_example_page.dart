@@ -162,7 +162,7 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
           width: 20,
         ),
       ),
-      // brightness: Brightness.dark,
+      brightness: Brightness.dark,
       // backgroundColor: Colors.amberAccent,
       title: Row(
         mainAxisSize: MainAxisSize.min,

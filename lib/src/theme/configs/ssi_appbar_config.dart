@@ -4,26 +4,12 @@ import 'package:flutter_ssikit/src/constants/ssi_asset_constants.dart';
 import 'package:flutter_ssikit/src/constants/ssi_strings_constants.dart';
 import 'package:flutter_ssikit/src/theme/ssi_theme.dart';
 
-import 'ssi_appbar_theme.dart';
+import '../../components/navbar/ssi_appbar_theme.dart';
 
 typedef SsiWidgetBuilder = Widget Function();
 
 /// Appbar主题配置
-class SsiAppBarConfig {
-  
-
-  static SsiAppBarConfig defaultAppBarConfig() {
-    return SsiAppBarConfig(
-      backgroundColor: Colors.white,
-      leadIconBuilder: () => Image.asset(
-        SsiAsset.ICON_BACK_BLACK,
-        package: SsiStrings.flutterPackageName,
-        width: SsiAppBarTheme.iconSize,
-        height: SsiAppBarTheme.iconSize,
-        fit: BoxFit.fitHeight,
-      )
-    );
-  }
+class SsiAppBarConfig extends SsiBaseConfig {
 
   /// SsiAppBar 主题配置，遵循外部主题配置，默认配置[defaultAppBarConfig]
   SsiAppBarConfig(
@@ -38,8 +24,9 @@ class SsiAppBarConfig {
       this.titlePadding,
       this.iconSize = SsiAppBarTheme.iconSize,
       this.flexibleSpace,
-      this.systemUiOverlayStyle = SystemUiOverlayStyle.light}) {
-        
+      this.systemUiOverlayStyle = SystemUiOverlayStyle.light,
+      String configId = SsiThemeConfigurator.GLOBAL_CONFIG_ID})
+      : super(configId: configId) {
     titleStyle ??= SsiTextStyle(
         fontSize: SsiAppBarTheme.titleFontSize,
         fontWeight: FontWeight.w600,
@@ -50,20 +37,21 @@ class SsiAppBarConfig {
         fontWeight: FontWeight.w600);
   }
 
-  SsiAppBarConfig.dark({
-    this.backgroundColor,
-    this.appBarHeight = SsiAppBarTheme.appBarHeight,
-    this.leadIconBuilder,
-    this.titleStyle,
-    this.actionsStyle,
-    this.titleMaxLength = SsiAppBarTheme.maxLength,
-    this.leftAndRightPadding = SsiAppBarTheme.leftAndRightPadding,
-    this.itemSpacing = SsiAppBarTheme.iconMargin,
-    this.titlePadding,
-    this.iconSize = SsiAppBarTheme.iconSize,
-    this.flexibleSpace,
-    this.systemUiOverlayStyle = SystemUiOverlayStyle.light,
-  }) {
+  SsiAppBarConfig.dark(
+      {this.backgroundColor,
+      this.appBarHeight = SsiAppBarTheme.appBarHeight,
+      this.leadIconBuilder,
+      this.titleStyle,
+      this.actionsStyle,
+      this.titleMaxLength = SsiAppBarTheme.maxLength,
+      this.leftAndRightPadding = SsiAppBarTheme.leftAndRightPadding,
+      this.itemSpacing = SsiAppBarTheme.iconMargin,
+      this.titlePadding,
+      this.iconSize = SsiAppBarTheme.iconSize,
+      this.flexibleSpace,
+      this.systemUiOverlayStyle = SystemUiOverlayStyle.light,
+      String configId = SsiThemeConfigurator.GLOBAL_CONFIG_ID})
+      : super(configId: configId) {
     systemUiOverlayStyle = SystemUiOverlayStyle.light;
     backgroundColor = const Color(0xff2E313B);
     leadIconBuilder = () => Image.asset(
@@ -83,20 +71,21 @@ class SsiAppBarConfig {
         fontWeight: FontWeight.w600);
   }
 
-  SsiAppBarConfig.light({
-    this.backgroundColor,
-    this.appBarHeight = SsiAppBarTheme.appBarHeight,
-    this.leadIconBuilder,
-    this.titleStyle,
-    this.actionsStyle,
-    this.titleMaxLength = SsiAppBarTheme.maxLength,
-    this.leftAndRightPadding = SsiAppBarTheme.leftAndRightPadding,
-    this.itemSpacing = SsiAppBarTheme.iconMargin,
-    this.titlePadding,
-    this.iconSize = SsiAppBarTheme.iconSize,
-    this.flexibleSpace,
-    this.systemUiOverlayStyle = SystemUiOverlayStyle.dark,
-  }) {
+  SsiAppBarConfig.light(
+      {this.backgroundColor,
+      this.appBarHeight = SsiAppBarTheme.appBarHeight,
+      this.leadIconBuilder,
+      this.titleStyle,
+      this.actionsStyle,
+      this.titleMaxLength = SsiAppBarTheme.maxLength,
+      this.leftAndRightPadding = SsiAppBarTheme.leftAndRightPadding,
+      this.itemSpacing = SsiAppBarTheme.iconMargin,
+      this.titlePadding,
+      this.iconSize = SsiAppBarTheme.iconSize,
+      this.flexibleSpace,
+      this.systemUiOverlayStyle = SystemUiOverlayStyle.dark,
+      String configId = SsiThemeConfigurator.GLOBAL_CONFIG_ID})
+      : super(configId: configId) {
     systemUiOverlayStyle = SystemUiOverlayStyle.dark;
     backgroundColor = Colors.white;
     leadIconBuilder = () => Image.asset(
@@ -154,6 +143,28 @@ class SsiAppBarConfig {
   /// statusBar 样式
   /// default value is SystemUiOverlayStyle.dark
   SystemUiOverlayStyle systemUiOverlayStyle;
+
+  @override
+  void initThemeConfig(String configId, {SsiCommonConfig? currentLevelCommonConfig}) {
+    super.initThemeConfig(configId, currentLevelCommonConfig: currentLevelCommonConfig);
+
+    /// 用户全局组件配置
+    SsiAppBarConfig? appbarConfig =
+        SsiThemeConfigurator.instance.getConfig(configId: configId)?.appBarConfig;
+
+    backgroundColor ??= appbarConfig?.backgroundColor;
+    appBarHeight = appbarConfig?.appBarHeight ?? SsiAppBarTheme.appBarHeight;
+    leadIconBuilder ??= appbarConfig?.leadIconBuilder;
+    titleStyle = appbarConfig?.titleStyle?.merge(titleStyle);
+    actionsStyle = appbarConfig?.actionsStyle?.merge(actionsStyle);
+    titleMaxLength = appbarConfig?.titleMaxLength ?? SsiAppBarTheme.maxLength;
+    leftAndRightPadding = appbarConfig?.leftAndRightPadding ?? SsiAppBarTheme.leftAndRightPadding;
+    itemSpacing = appbarConfig?.itemSpacing ?? SsiAppBarTheme.iconMargin;
+    titlePadding ??= appbarConfig?.titlePadding;
+    iconSize = appbarConfig?.iconSize ?? SsiAppBarTheme.iconSize;
+    flexibleSpace ??= appbarConfig?.flexibleSpace;
+    systemUiOverlayStyle = appbarConfig?.systemUiOverlayStyle ?? SystemUiOverlayStyle.dark;
+  }
 
   SsiAppBarConfig copyWith({
     Color? backgroundColor,

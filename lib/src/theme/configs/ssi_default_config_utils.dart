@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '../../components/navbar/ssi_appbar_theme.dart';
+import '../../constants/ssi_asset_constants.dart';
+import '../../constants/ssi_strings_constants.dart';
 import '../../components/picker/base/ssi_picker_constants.dart';
 import '../../theme/base/ssi_text_style.dart';
+import '../ssi_theme_configurator.dart';
+import 'ssi_appbar_config.dart';
 import 'ssi_form_config.dart';
 import 'ssi_all_config.dart';
 import 'ssi_common_config.dart';
@@ -10,7 +17,7 @@ import 'ssi_picker_config.dart';
 class SsiDefaultConfigUtils {
   ///  默认全局配置
   static SsiAllThemeConfig defaultAllConfig = SsiAllThemeConfig(
-      commonConfig: defaultCommonConfig, pickerConfig: defaultPickerConfig, formItemConfig: defaultFormItemConfig);
+      commonConfig: defaultCommonConfig, pickerConfig: defaultPickerConfig, formItemConfig: defaultFormItemConfig, appBarConfig: defaultAppBarConfig);
 
   /// 全局默认配置
   static SsiCommonConfig defaultCommonConfig = SsiCommonConfig(
@@ -217,4 +224,32 @@ class SsiDefaultConfigUtils {
     ),
     cornerRadius: 8,
   );
+
+  /// 导航栏配置
+  static SsiAppBarConfig defaultAppBarConfig = SsiAppBarConfig(
+      backgroundColor: Colors.white,
+      appBarHeight: SsiAppBarTheme.appBarHeight,
+      leadIconBuilder: () => Image.asset(
+            SsiAsset.ICON_BACK_BLACK,
+            package: SsiStrings.flutterPackageName,
+            width: SsiAppBarTheme.iconSize,
+            height: SsiAppBarTheme.iconSize,
+            fit: BoxFit.fitHeight,
+          ),
+      titleStyle: SsiTextStyle(
+          fontSize: SsiAppBarTheme.titleFontSize,
+          fontWeight: FontWeight.w600,
+          color: SsiAppBarTheme.lightTextColor),
+      actionsStyle: SsiTextStyle(
+          color: SsiAppBarTheme.lightTextColor,
+          fontSize: SsiAppBarTheme.actionFontSize,
+          fontWeight: FontWeight.w600),
+      titleMaxLength: SsiAppBarTheme.maxLength,
+      leftAndRightPadding: 20,
+      itemSpacing: SsiAppBarTheme.iconMargin,
+      titlePadding: EdgeInsets.zero,
+      iconSize: SsiAppBarTheme.iconSize,
+      configId: SsiThemeConfigurator.SSIKIT_CONFIG_ID,
+      systemUiOverlayStyle: SystemUiOverlayStyle.dark);
+
 }
