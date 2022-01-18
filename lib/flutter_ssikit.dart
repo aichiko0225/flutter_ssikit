@@ -52,6 +52,11 @@ export 'src/components/charts/line/ssi_line_y_painter.dart';
 export 'src/components/popup/ssi_popup_window.dart';
 export 'src/components/popup/ssi_overlay_window.dart';
 
+//导航栏
+export 'src/components/navbar/ssi_appbar.dart';
+export 'src/components/navbar/ssi_empty_appbar.dart';
+export 'src/components/navbar/ssi_appbar_config.dart';
+
 
 import 'package:flutter/services.dart';
 

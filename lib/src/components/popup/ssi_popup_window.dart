@@ -493,7 +493,7 @@ class SsiPopupListWindow {
       double spaceMarginOffset = 0,
       SsiPopupListItemClick? onItemClick,
       VoidCallback? onDismiss}) {
-        assert(spaceMarginOffset > 0);
+        assert(spaceMarginOffset >= 0);
     double arrowHeight = 6.0;
     double borderRadius = 4;
     double spaceMargin = 0 + spaceMarginOffset;

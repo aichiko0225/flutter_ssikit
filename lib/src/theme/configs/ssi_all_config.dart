@@ -1,5 +1,4 @@
 import 'package:flutter_ssikit/src/theme/configs/ssi_common_config.dart';
-import 'package:flutter_ssikit/src/theme/ssi_theme.dart';
 import 'package:flutter_ssikit/src/theme/ssi_theme_configurator.dart';
 
 import 'ssi_form_config.dart';
