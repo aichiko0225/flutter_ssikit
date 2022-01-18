@@ -6,6 +6,7 @@ import 'package:flutter_ssikit_example/sample/components/noticebar/ssi_notice_ba
 import 'package:flutter_ssikit_example/sample/components/picker/cutomer_bottom_picker_example.dart';
 import 'package:flutter_ssikit_example/sample/components/picker/date_picker_example.dart';
 import 'package:flutter_ssikit_example/sample/components/picker/multi_picker_example.dart';
+import 'package:flutter_ssikit_example/sample/components/popup/popwindow_example.dart';
 import '/sample/components/content/text_expanded_example.dart';
 import '/sample/components/toast/toast_example.dart';
 
@@ -39,6 +40,9 @@ class HomePage extends StatelessWidget {
     },
     'TextInputExamplePage': (context) {
       return TextInputExamplePage('input item');
+    },
+    'PopwindowExample': (context) {
+      return PopWindowExamplePage('PopwindowExample');
     }
   };
 

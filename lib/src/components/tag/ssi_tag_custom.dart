@@ -70,7 +70,7 @@ class SsiTagCustom extends StatelessWidget {
     Color? borderColor,
     double borderWidth = 1,
     double borderRadius = 3,
-  })  : maxWidth = double.infinity,
+  }) : maxWidth = double.infinity,
         border = Border.all(
           color: borderColor ?? (SsiThemeConfigurator.instance.getConfig()?.commonConfig?.brandPrimary)!,
           width: borderWidth,

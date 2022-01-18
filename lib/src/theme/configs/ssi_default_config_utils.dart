@@ -175,7 +175,7 @@ class SsiDefaultConfigUtils {
         top: defaultCommonConfig.vSpacingLg ?? 14,
         right: defaultCommonConfig.hSpacingLg ?? 20,
         bottom: defaultCommonConfig.vSpacingLg ?? 14),
-    titlePaddingSm: EdgeInsets.only(left: 10),
+    titlePaddingSm: const EdgeInsets.only(left: 10),
     titlePaddingLg: EdgeInsets.only(left: defaultCommonConfig.hSpacingLg ?? 20),
     subTitlePadding:
         EdgeInsets.only(left: defaultCommonConfig.hSpacingLg ?? 20, top: defaultCommonConfig.vSpacingXs ?? 4),
@@ -189,6 +189,7 @@ class SsiDefaultConfigUtils {
         color: defaultCommonConfig.colorTextSecondary, fontSize: defaultCommonConfig.fontSizeBase),
   );
 
+  /// picker 默认配置
   static SsiPickerConfig defaultPickerConfig = SsiPickerConfig(
     backgroundColor: PICKER_BACKGROUND_COLOR,
     cancelTextStyle: SsiTextStyle(

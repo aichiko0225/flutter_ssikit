@@ -48,6 +48,11 @@ export 'src/components/charts/line/ssi_line_data.dart';
 export 'src/components/charts/line/ssi_line_painter.dart';
 export 'src/components/charts/line/ssi_line_y_painter.dart';
 
+//悬浮窗
+export 'src/components/popup/ssi_popup_window.dart';
+export 'src/components/popup/ssi_overlay_window.dart';
+
+
 import 'package:flutter/services.dart';
 
 class FlutterSsikit {
