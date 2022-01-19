@@ -78,6 +78,16 @@ class AppbarEntryPage extends StatelessWidget {
                 _openNavBarPage(context, 14);
               },
             ),
+
+            const ListTile(title: Text('渐变色示例')),
+
+            ListItem(
+              title: "GradientNavbar示例",
+              describe: '',
+              onPressed: () {
+                _openNavBarPage(context, 30);
+              },
+            ),
           ],
         ));
   }

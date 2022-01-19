@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_ssikit/flutter_ssikit.dart';
@@ -39,18 +38,20 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
     textEditingController = TextEditingController();
     valueNotifier = ValueNotifier(false);
 
-    selectedHeiStyle =
-        TextStyle(fontSize: 18, color: Color(0xFFFFFFFF), fontWeight: FontWeight.w600);
-    selectedBaiStyle =
-        TextStyle(fontSize: 18, color: Color(0xFF222222), fontWeight: FontWeight.w600);
+    selectedHeiStyle = TextStyle(
+        fontSize: 18, color: Color(0xFFFFFFFF), fontWeight: FontWeight.w600);
+    selectedBaiStyle = TextStyle(
+        fontSize: 18, color: Color(0xFF222222), fontWeight: FontWeight.w600);
 
-    unSelectedHeiStyle =
-        TextStyle(fontSize: 18, color: Color(0xFF999999), fontWeight: FontWeight.w600);
-    unSelectedBaiStyle =
-        TextStyle(fontSize: 18, color: Color(0xFF999999), fontWeight: FontWeight.w600);
+    unSelectedHeiStyle = TextStyle(
+        fontSize: 18, color: Color(0xFF999999), fontWeight: FontWeight.w600);
+    unSelectedBaiStyle = TextStyle(
+        fontSize: 18, color: Color(0xFF999999), fontWeight: FontWeight.w600);
 
-    commonHeiStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white);
-    commonBaiStyle = TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Color(0xFF222222));
+    commonHeiStyle = TextStyle(
+        fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white);
+    commonBaiStyle = TextStyle(
+        fontSize: 18, fontWeight: FontWeight.w600, color: Color(0xFF222222));
 
     focusNode = FocusNode();
     focusNode.addListener(() {
@@ -70,7 +71,7 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
     );
   }
 
-  PreferredSizeWidget buildBarByIndex(BuildContext context) {
+  PreferredSizeWidget? buildBarByIndex(BuildContext context) {
     PreferredSizeWidget? appBar;
     switch (widget.index) {
       case 0:
@@ -120,17 +121,22 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
         //多切换文本
         appBar = _getAppBarWithSearchResult();
         break;
+
+      case 30:
+        appBar = _getGradientAppbar();
+        break;
       default:
     }
-    return appBar!;
+    return appBar;
   }
 
   Widget buildContentByIndex(BuildContext context) {
     Widget? widget;
     switch (this.widget.index) {
       case 0:
-        widget =
-            Center(child: Text('1. 左上角的返回按钮图标支持自定义，本例改成了搜索图标\n2.切换类型的导航栏\n3.顶部模块切换可不限于两个，可多个'));
+        widget = Center(
+            child: Text(
+                '1. 左上角的返回按钮图标支持自定义，本例改成了搜索图标\n2.切换类型的导航栏\n3.顶部模块切换可不限于两个，可多个'));
         break;
       case 4:
         widget = Center(child: Text('多Actions'));
@@ -290,13 +296,17 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
           Text(
             '标题名称',
             style: TextStyle(
-                fontSize: 18, height: 1, fontWeight: FontWeight.w600, color: Color(0xFF222222)),
+                fontSize: 18,
+                height: 1,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF222222)),
           ),
           Container(
               height: 17,
               padding: EdgeInsets.only(left: 3, right: 3),
               margin: EdgeInsets.only(left: 6),
-              decoration: BoxDecoration(color: Color(0xff8E8E8E).withOpacity(0.15)),
+              decoration:
+                  BoxDecoration(color: Color(0xff8E8E8E).withOpacity(0.15)),
               child: Center(
                 child: Text(
                   '住宅',
@@ -501,7 +511,9 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
               child: Center(
                 child: Text(
                   '标题',
-                  style: index == currentIndex ? selectedHeiStyle : unSelectedHeiStyle,
+                  style: index == currentIndex
+                      ? selectedHeiStyle
+                      : unSelectedHeiStyle,
                 ),
               ),
             );
@@ -525,4 +537,59 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
     );
   }
 
+  PreferredSizeWidget? _getGradientAppbar() {
+    return GradientAppbar(
+      appBar: SsiAppBar(
+        title: '标题名称',
+        themeData: SsiAppBarConfig.dark(),
+        backgroundColor: Colors.transparent,
+        brightness: Brightness.dark,
+        leading: SsiBackLeading(themeData: SsiAppBarConfig.dark(),),
+        actions: SsiTextAction(
+          '弹出菜单',
+          key: actionKey,
+          iconPressed: () {
+            SsiPopupListWindow.showPopListWindow(context, actionKey,
+                offset: 10, data: ["aaaa", "bbbbb"]);
+          },
+        ),
+      ),
+      colors: [Colors.red, Colors.orange.shade700],
+    );
+  }
+}
+
+class GradientAppbar extends StatelessWidget implements PreferredSizeWidget {
+  final SsiAppBar appBar;
+  final List<Color> colors;
+
+  AlignmentGeometry begin;
+  AlignmentGeometry end;
+
+  GradientAppbar({
+    Key? key,
+    required this.appBar,
+    required this.colors,
+    this.begin = Alignment.centerLeft,
+    this.end = Alignment.centerRight,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(gradient: LinearGradient(colors: colors, begin: begin, end: end), //背景渐变
+          // boxShadow: const [
+          //   //阴影
+          //   BoxShadow(
+          //       color: Colors.black54,
+          //       offset: Offset(2.0, 2.0),
+          //       blurRadius: 4.0)
+          // ]
+      ),
+      child: appBar,
+    );
+  }
+
+  @override
+  Size get preferredSize => appBar.preferredSize;
 }

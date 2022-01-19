@@ -272,11 +272,11 @@ class SsiAppBar extends PreferredSize {
 
   @override
   Widget get child {
-    SsiAppBarConfig _defaultConfig =
-        SsiThemeConfigurator.instance
+    SsiAppBarConfig _defaultConfig = SsiThemeConfigurator.instance
             .getConfig()
             ?.appBarConfig
-            ?.merge(themeData) ?? SsiAppBarConfig(backgroundColor: backgroundColor);
+            ?.merge(themeData) ??
+        SsiAppBarConfig(backgroundColor: backgroundColor);
     //当外部传入主题
     if (brightness == Brightness.light) {
       _defaultConfig = _defaultConfig.merge(SsiAppBarConfig.light());
@@ -294,7 +294,6 @@ class SsiAppBar extends PreferredSize {
         child: _defaultConfig.flexibleSpace,
       );
     }
-
     return AppBar(
       key: key,
       leading: _wrapLeading(_defaultConfig),
@@ -555,11 +554,11 @@ class SsiIconAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SsiAppBarConfig _defaultThemeData =
-        SsiThemeConfigurator.instance
+    SsiAppBarConfig _defaultThemeData = SsiThemeConfigurator.instance
             .getConfig()
             ?.appBarConfig
-            ?.merge(themeData) ?? SsiAppBarConfig(iconSize: size);
+            ?.merge(themeData) ??
+        SsiAppBarConfig(iconSize: size);
 
     return ConstrainedBox(
       constraints: BoxConstraints.tightFor(
@@ -577,8 +576,12 @@ class SsiIconAction extends StatelessWidget {
 /// 在往[SsiAppBar.actions]中添加文本action时所使用的包装Widget
 /// 此Widget中实现了大小约束，和点击实现，添加文本action时必须使用此类包裹
 class SsiTextAction extends StatelessWidget {
-  final String? text;
+  
+  /// 文本必须是[String]或者[Text]类型
+  /// 为[String]时,会使用[Text]来加载文本
+  dynamic text;
   final VoidCallback? iconPressed;
+  /// 单独传入并没有作用，会使用Appbar的themeData
   final SsiAppBarConfig? themeData;
 
   SsiTextAction(this.text, {Key? key, this.iconPressed, this.themeData})
@@ -589,7 +592,19 @@ class SsiTextAction extends StatelessWidget {
     SsiAppBarConfig _defaultThemeData = SsiThemeConfigurator.instance
             .getConfig()
             ?.appBarConfig
-            ?.merge(themeData) ?? SsiAppBarConfig();
+            ?.merge(themeData) ??
+        SsiAppBarConfig();
+    text ??= '';
+
+    if (text is Text) {
+      return GestureDetector(
+        child: Container(
+          alignment: Alignment.center,
+          child: text as Text,
+        ),
+        onTap: iconPressed,
+      );
+    }
 
     return GestureDetector(
       child: Container(
@@ -643,7 +658,8 @@ class _SsiSearchResultAppBar extends StatelessWidget {
     SsiAppBarConfig _defaultConfig = SsiThemeConfigurator.instance
             .getConfig()
             ?.appBarConfig
-            ?.merge(appBarConfig) ?? SsiAppBarConfig();
+            ?.merge(appBarConfig) ??
+        SsiAppBarConfig();
 
     if (brightness == Brightness.light) {
       _defaultConfig = _defaultConfig.merge(SsiAppBarConfig.light());

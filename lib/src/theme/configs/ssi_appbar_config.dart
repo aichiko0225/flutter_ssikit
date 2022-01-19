@@ -27,14 +27,14 @@ class SsiAppBarConfig extends SsiBaseConfig {
       this.systemUiOverlayStyle = SystemUiOverlayStyle.light,
       String configId = SsiThemeConfigurator.GLOBAL_CONFIG_ID})
       : super(configId: configId) {
-    titleStyle ??= SsiTextStyle(
-        fontSize: SsiAppBarTheme.titleFontSize,
-        fontWeight: FontWeight.w600,
-        color: SsiAppBarTheme.lightTextColor);
-    actionsStyle ??= SsiTextStyle(
-        color: SsiAppBarTheme.lightTextColor,
-        fontSize: SsiAppBarTheme.actionFontSize,
-        fontWeight: FontWeight.w600);
+    // titleStyle ??= SsiTextStyle(
+    //     fontSize: SsiAppBarTheme.titleFontSize,
+    //     fontWeight: FontWeight.w600,
+    //     color: SsiAppBarTheme.lightTextColor);
+    // actionsStyle ??= SsiTextStyle(
+    //     color: SsiAppBarTheme.lightTextColor,
+    //     fontSize: SsiAppBarTheme.actionFontSize,
+    //     fontWeight: FontWeight.w600);
   }
 
   SsiAppBarConfig.dark(
