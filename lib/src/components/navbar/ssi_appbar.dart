@@ -125,6 +125,7 @@ class SsiAppBar extends PreferredSize {
   final double toolbarOpacity;
   final double bottomOpacity;
   final Alignment titleAlignment;
+  bool? centerTitle;
   final Widget? flexibleSpace;
   final double? leadingWidth;
   final Color? shadowColor;
@@ -160,6 +161,7 @@ class SsiAppBar extends PreferredSize {
       this.toolbarOpacity = 1.0,
       this.bottomOpacity = 1.0,
       this.titleAlignment = Alignment.center,
+      this.centerTitle,
       this.flexibleSpace,
       this.backLeadCallback,
       this.showDefaultBottom = true,
@@ -301,7 +303,7 @@ class SsiAppBar extends PreferredSize {
       titleSpacing: 0,
       automaticallyImplyLeading: false,
       title: _buildAppBarTitle(_defaultConfig),
-      centerTitle: true,
+      centerTitle: centerTitle,
       elevation: elevation ?? 0,
       backgroundColor: _defaultConfig.backgroundColor,
       actions: _wrapActions(_defaultConfig),
@@ -390,6 +392,7 @@ class SsiAppBar extends PreferredSize {
     if (title is String) {
       realTitle = SsiAppBarTitle(
         title,
+        titleAlignment: titleAlignment,
         themeData: themeData,
       );
     }
@@ -510,9 +513,10 @@ class SsiDoubleLeading extends StatelessWidget {
 /// 标题文字个数限制在8个以内，并且单行展示
 class SsiAppBarTitle extends StatelessWidget {
   final String title;
+  final Alignment titleAlignment;
   final SsiAppBarConfig? themeData;
 
-  SsiAppBarTitle(this.title, {Key? key, this.themeData}) : super(key: key);
+  SsiAppBarTitle(this.title, {Key? key, required this.titleAlignment, this.themeData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -523,10 +527,14 @@ class SsiAppBarTitle extends StatelessWidget {
         SsiAppBarConfig();
 
     return ConstrainedBox(
-      child: Text(
-        title,
-        style: _defaultThemeData.titleStyle?.generateTextStyle(),
-        overflow: TextOverflow.ellipsis,
+      child: Container(
+        alignment: titleAlignment,
+        child: Text(
+          title,
+          style: _defaultThemeData.titleStyle?.generateTextStyle(),
+          overflow: TextOverflow.ellipsis,
+          // textAlign: TextAlign.left,
+        ),
       ),
       constraints: BoxConstraints.loose(Size.fromWidth(
           (_defaultThemeData.titleStyle?.generateTextStyle().fontSize ?? 18) *
@@ -576,11 +584,11 @@ class SsiIconAction extends StatelessWidget {
 /// 在往[SsiAppBar.actions]中添加文本action时所使用的包装Widget
 /// 此Widget中实现了大小约束，和点击实现，添加文本action时必须使用此类包裹
 class SsiTextAction extends StatelessWidget {
-  
   /// 文本必须是[String]或者[Text]类型
   /// 为[String]时,会使用[Text]来加载文本
   dynamic text;
   final VoidCallback? iconPressed;
+
   /// 单独传入并没有作用，会使用Appbar的themeData
   final SsiAppBarConfig? themeData;
 

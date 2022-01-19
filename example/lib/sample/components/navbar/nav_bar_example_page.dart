@@ -125,6 +125,12 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
       case 30:
         appBar = _getGradientAppbar();
         break;
+      case 31:
+        appBar = _getGradientAppbarTitleLeft();
+        break;
+      case 32:
+        appBar = _getGradientAppbarNoBack();
+      break;
       default:
     }
     return appBar;
@@ -545,6 +551,43 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
         backgroundColor: Colors.transparent,
         brightness: Brightness.dark,
         leading: SsiBackLeading(themeData: SsiAppBarConfig.dark(),),
+        actions: SsiTextAction(
+          '弹出菜单',
+          key: actionKey,
+          iconPressed: () {
+            SsiPopupListWindow.showPopListWindow(context, actionKey,
+                offset: 10, data: ["aaaa", "bbbbb"]);
+          },
+        ),
+      ),
+      colors: [Colors.red, Colors.orange.shade700],
+    );
+  }
+
+  PreferredSizeWidget? _getGradientAppbarNoBack() {
+    return GradientAppbar(
+      appBar: SsiAppBar(
+        automaticallyImplyLeading: false,  
+        title: '标题名称',
+        themeData: SsiAppBarConfig.dark(),
+        backgroundColor: Colors.transparent,
+      ),
+      colors: [Colors.red, Colors.orange.shade700],
+    );
+  }
+
+  PreferredSizeWidget? _getGradientAppbarTitleLeft() {
+    return GradientAppbar(
+      appBar: SsiAppBar(
+        automaticallyImplyLeading: false,  
+        title: '标题名称',
+        themeData: SsiAppBarConfig.dark(),
+        centerTitle: false,
+        leading: const SizedBox(),
+        leadingWidth: 20,
+        backgroundColor: Colors.transparent,
+        brightness: Brightness.dark,
+        titleAlignment: Alignment.centerLeft,
         actions: SsiTextAction(
           '弹出菜单',
           key: actionKey,

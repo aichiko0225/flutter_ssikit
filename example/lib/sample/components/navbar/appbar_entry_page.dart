@@ -83,11 +83,26 @@ class AppbarEntryPage extends StatelessWidget {
 
             ListItem(
               title: "GradientNavbar示例",
-              describe: '',
+              describe: '默认样式',
               onPressed: () {
                 _openNavBarPage(context, 30);
               },
             ),
+            ListItem(
+              title: "GradientNavbar示例",
+              describe: '没有leading',
+              onPressed: () {
+                _openNavBarPage(context, 32);
+              },
+            ),
+            ListItem(
+              title: "GradientNavbar示例",
+              describe: '标题靠左侧',
+              onPressed: () {
+                _openNavBarPage(context, 31);
+              },
+            ),
+            
           ],
         ));
   }
