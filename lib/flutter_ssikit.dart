@@ -22,6 +22,7 @@ export 'src/components/picker/ssi_multi_picker.dart';
 export 'src/components/picker/base/ssi_picker_title_config.dart';
 export 'src/components/picker/time_picker/date_picker/ssi_date_picker.dart';
 export 'src/components/picker/time_picker/ssi_date_time_formatter.dart';
+export 'src/components/picker/time_picker/date_switch_picker/ssi_date_switch_picker.dart';
 
 
 //文本

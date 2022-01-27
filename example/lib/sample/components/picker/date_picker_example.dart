@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_ssikit/flutter_ssikit.dart';
 import 'package:flutter_ssikit_example/sample/home/list_item.dart';
@@ -35,6 +34,14 @@ class DatePickerExamplePage extends StatelessWidget {
               describe: '日期和时间样式选择器',
               onPressed: () {
                 _showPicker(context, SsiDateTimePickerMode.datetime);
+              },
+            ),
+            ListItem(
+              title: "DateAndTimeStyle",
+              describe: '日期和时间样式开始时间结束时间切换选择器',
+              onPressed: () {
+                _showSwitchPicker(
+                    context, SsiDateTimeSwitchPickerMode.datetime);
               },
             ),
           ],
@@ -111,6 +118,43 @@ class DatePickerExamplePage extends StatelessWidget {
         pickerTitleConfig: SsiPickerTitleConfig.defaultConfig,
         dateFormat: format, onConfirm: (dateTime, list) {
       SsiToast.show("onConfirm:  $dateTime   $list", context);
+    }, onClose: () {
+      print("onClose");
+    }, onCancel: () {
+      print("onCancel");
+    }, onChange: (dateTime, list) {
+      print("onChange:  $dateTime    $list");
+    });
+  }
+
+  _showSwitchPicker(BuildContext context, SsiDateTimeSwitchPickerMode mode) {
+    String format = 'yyyy-MMMM-dd';
+    const String MIN_DATETIME = '2020-01-15 00:00:00';
+    switch (mode) {
+      case SsiDateTimeSwitchPickerMode.date:
+        format = 'yyyy年,MMMM月,dd日';
+        break;
+      case SsiDateTimeSwitchPickerMode.datetime:
+        format = 'yyyy年,MM月,dd日,HH时:mm分';
+        break;
+      case SsiDateTimeSwitchPickerMode.time:
+        format = 'HH:mm:ss';
+        break;
+      default:
+        format = 'yyyy-MMMM-dd';
+        break;
+    }
+
+    SsiDateSwitchPicker.showDatePicker(context,
+        maxDateTime: DateTime.now(),
+        minDateTime: DateTime.parse(MIN_DATETIME),
+        initialDateTime: DateTime.now(),
+        pickerMode: mode,
+        minuteDivider: 1,
+        pickerTitleConfig: SsiPickerTitleConfig.defaultConfig,
+        dateFormat: format, onConfirm: (startDateTime, endDateTime) {
+          print("startDateTime:  $startDateTime    $endDateTime");
+          SsiToast.show("onConfirm:  $startDateTime   $endDateTime", context);
     }, onClose: () {
       print("onClose");
     }, onCancel: () {

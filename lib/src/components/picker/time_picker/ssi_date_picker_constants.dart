@@ -1,12 +1,20 @@
 /// Selected value of DatePicker.
 // ignore_for_file: constant_identifier_names
 
-typedef DateValueCallback = Function(DateTime dateTime, List<int> selectedIndex);
+typedef DateValueCallback = Function(
+    DateTime dateTime, List<int> selectedIndex);
 
-typedef DateRangeValueCallback = Function(DateTime startDateTime, DateTime endDateTime,
-    List<int> startSelectedIndex, List<int> endSelectedIndex);
+typedef DateValueStartAndEndCallback = Function(
+    DateTime startDateTime, DateTime endDateTime);
 
-typedef DateRangeSideValueCallback = Function(DateTime selectDateTime, List<int> selectedIndex);
+typedef DateRangeValueCallback = Function(
+    DateTime startDateTime,
+    DateTime endDateTime,
+    List<int> startSelectedIndex,
+    List<int> endSelectedIndex);
+
+typedef DateRangeSideValueCallback = Function(
+    DateTime selectDateTime, List<int> selectedIndex);
 
 /// Pressed cancel callback.
 typedef DateVoidCallback = void Function();
@@ -34,4 +42,3 @@ const String DATETIME_RANGE_PICKER_TIME_FORMAT = 'HH:mm';
 
 /// Default value of datetime format
 const String DATETIME_RANGE_PICKER_DATETIME_FORMAT = 'MMdd HH:mm';
- 
