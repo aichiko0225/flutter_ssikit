@@ -55,8 +55,11 @@ class SsiDateSwitchPicker {
     /// 能滚动到的最大日期
     DateTime? maxDateTime,
 
-    /// 初始选择的时间。默认当前时间
-    DateTime? initialDateTime,
+    /// 初始选择的开始时间。默认当前时间
+    DateTime? initialStartDateTime,
+
+    /// 初始选择的结束时间。默认当前时间
+    DateTime? initialEndDateTime,
 
     /// 时间格式化的格式
     String? dateFormat,
@@ -90,7 +93,8 @@ class SsiDateSwitchPicker {
     maxDateTime ??= DateTime.parse(DATE_PICKER_MAX_DATETIME);
 
     // handle initial DateTime
-    initialDateTime ??= DateTime.now();
+    initialStartDateTime ??= DateTime.now();
+    initialEndDateTime ??= DateTime.now();
 
     // Set value of date format
     dateFormat =
@@ -102,7 +106,8 @@ class SsiDateSwitchPicker {
             canBarrierDismissible: canBarrierDismissible,
             minDateTime: minDateTime,
             maxDateTime: maxDateTime,
-            initialDateTime: initialDateTime,
+            initialStartDateTime: initialStartDateTime,
+            initialEndDateTime: initialEndDateTime,
             dateFormat: dateFormat,
             minuteDivider: minuteDivider,
             locale: locale,
@@ -126,7 +131,8 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
   _DatePickerRoute({
     this.minDateTime,
     this.maxDateTime,
-    this.initialDateTime,
+    this.initialStartDateTime,
+    this.initialEndDateTime,
     this.minuteDivider = 1,
     this.dateFormat,
     this.locale = DateTimePickerLocale.zh_cn,
@@ -148,7 +154,7 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
         ?.merge(themeData);
   }
 
-  final DateTime? minDateTime, maxDateTime, initialDateTime;
+  final DateTime? minDateTime, maxDateTime, initialStartDateTime,initialEndDateTime;
   final String? dateFormat;
 
   final DateTimePickerLocale locale;
@@ -245,8 +251,8 @@ class _DatePickerComponent extends StatelessWidget {
         pickerWidget = SsiPickerSwitchTop(
           startMinTime: route.minDateTime,
           startMaxTime: route.maxDateTime,
-          currentStartTime: route.initialDateTime,
-          currentEndTime: route.initialDateTime,
+          currentStartTime: route.initialStartDateTime,
+          currentEndTime: route.initialEndDateTime,
           dateFormat: route.dateFormat,
           minuteDivider: route.minuteDivider,
           locale: route.locale,
