@@ -57,6 +57,8 @@ export 'src/components/popup/ssi_overlay_window.dart';
 export 'src/components/navbar/ssi_appbar.dart';
 export 'src/components/navbar/ssi_empty_appbar.dart';
 
+//日历组件
+export 'src/components/calendar/ssi_calendar_view.dart';
 
 import 'package:flutter/services.dart';
 

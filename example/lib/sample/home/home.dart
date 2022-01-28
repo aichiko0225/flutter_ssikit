@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ssikit_example/sample/components/actionsheet/actionsheet_entry_page.dart';
+import 'package:flutter_ssikit_example/sample/components/calendar/calendarview_example.dart';
 import 'package:flutter_ssikit_example/sample/components/charts/charts_example.dart';
 import 'package:flutter_ssikit_example/sample/components/form/text_input_example.dart';
 import 'package:flutter_ssikit_example/sample/components/navbar/appbar_entry_page.dart';
@@ -44,9 +45,12 @@ class HomePage extends StatelessWidget {
     },
     'PopwindowExample': (context) {
       return PopWindowExamplePage('PopwindowExample');
-    }, 
+    },
     'appbarPageExample': (context) {
       return AppbarEntryPage();
+    },
+    '日历组件': (context) {
+      return CalendarViewExample('日历组件');
     }
   };
 
