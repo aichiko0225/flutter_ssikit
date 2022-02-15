@@ -237,7 +237,7 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
       actions: SsiTextAction(
         '弹出菜单',
         key: actionKey,
-        iconPressed: () {
+        textPressed: () {
           SsiPopupListWindow.showPopListWindow(context, actionKey,
               offset: 10, data: ["aaaa", "bbbbb"]);
         },
@@ -554,7 +554,7 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
         actions: SsiTextAction(
           '弹出菜单',
           key: actionKey,
-          iconPressed: () {
+          textPressed: () {
             SsiPopupListWindow.showPopListWindow(context, actionKey,
                 offset: 10, data: ["aaaa", "bbbbb"]);
           },
@@ -591,7 +591,7 @@ class _NavBarPageState extends State<NavBarPage> with TickerProviderStateMixin {
         actions: SsiTextAction(
           '弹出菜单',
           key: actionKey,
-          iconPressed: () {
+          textPressed: () {
             SsiPopupListWindow.showPopListWindow(context, actionKey,
                 offset: 10, data: ["aaaa", "bbbbb"]);
           },

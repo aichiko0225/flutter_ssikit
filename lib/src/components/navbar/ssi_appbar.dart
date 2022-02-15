@@ -375,7 +375,7 @@ class SsiAppBar extends PreferredSize {
   SsiTextAction _warpRealAction(SsiTextAction textAction) {
     return SsiTextAction(
       textAction.text,
-      iconPressed: textAction.iconPressed,
+      textPressed: textAction.textPressed,
       themeData: themeData,
       key: textAction.key,
     );
@@ -587,12 +587,12 @@ class SsiTextAction extends StatelessWidget {
   /// 文本必须是[String]或者[Text]类型
   /// 为[String]时,会使用[Text]来加载文本
   dynamic text;
-  final VoidCallback? iconPressed;
+  final VoidCallback? textPressed;
 
   /// 单独传入并没有作用，会使用Appbar的themeData
   final SsiAppBarConfig? themeData;
 
-  SsiTextAction(this.text, {Key? key, this.iconPressed, this.themeData})
+  SsiTextAction(this.text, {Key? key, this.textPressed, this.themeData})
       : super(key: key);
 
   @override
@@ -610,7 +610,7 @@ class SsiTextAction extends StatelessWidget {
           alignment: Alignment.center,
           child: text as Text,
         ),
-        onTap: iconPressed,
+        onTap: textPressed,
       );
     }
 
@@ -622,7 +622,7 @@ class SsiTextAction extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: _defaultThemeData.actionsStyle?.generateTextStyle()),
       ),
-      onTap: iconPressed,
+      onTap: textPressed,
     );
   }
 }
