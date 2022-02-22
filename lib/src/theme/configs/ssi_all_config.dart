@@ -1,5 +1,7 @@
 import 'package:flutter_ssikit/flutter_ssikit.dart';
+import 'package:flutter_ssikit/src/theme/configs/ssi_button_config.dart';
 import 'package:flutter_ssikit/src/theme/configs/ssi_common_config.dart';
+import 'package:flutter_ssikit/src/theme/configs/ssi_dialog_config.dart';
 import 'package:flutter_ssikit/src/theme/ssi_theme_configurator.dart';
 
 import 'ssi_form_config.dart';
@@ -16,6 +18,10 @@ import 'ssi_picker_config.dart';
 class SsiAllThemeConfig {
   SsiCommonConfig? commonConfig;
 
+  SsiDialogConfig? dialogConfig;
+
+  SsiButtonConfig? buttonConfig;
+
   SsiPickerConfig? pickerConfig;
 
   SsiFormItemConfig? formItemConfig;
@@ -24,6 +30,8 @@ class SsiAllThemeConfig {
 
   SsiAllThemeConfig(
       {this.commonConfig,
+      this.dialogConfig,
+      this.buttonConfig,
       this.pickerConfig,
       this.formItemConfig,
       this.appBarConfig,

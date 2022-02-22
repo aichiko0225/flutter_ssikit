@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_ssikit/src/theme/configs/ssi_button_config.dart';
+import 'package:flutter_ssikit/src/theme/configs/ssi_dialog_config.dart';
 
 import '../../components/navbar/ssi_appbar_theme.dart';
 import '../../constants/ssi_asset_constants.dart';
@@ -17,7 +19,12 @@ import 'ssi_picker_config.dart';
 class SsiDefaultConfigUtils {
   ///  默认全局配置
   static SsiAllThemeConfig defaultAllConfig = SsiAllThemeConfig(
-      commonConfig: defaultCommonConfig, pickerConfig: defaultPickerConfig, formItemConfig: defaultFormItemConfig, appBarConfig: defaultAppBarConfig);
+      commonConfig: defaultCommonConfig,
+      dialogConfig: defaultDialogConfig,
+      buttonConfig: defaultButtonConfig,
+      pickerConfig: defaultPickerConfig,
+      formItemConfig: defaultFormItemConfig,
+      appBarConfig: defaultAppBarConfig);
 
   /// 全局默认配置
   static SsiCommonConfig defaultCommonConfig = SsiCommonConfig(
@@ -149,26 +156,93 @@ class SsiDefaultConfigUtils {
     iconSizeLg: 32,
   );
 
-///******** 以下是子配置项 ********///
+  ///******** 以下是子配置项 ********///
+  ///弹窗配置
+  static SsiDialogConfig defaultDialogConfig = SsiDialogConfig(
+      dialogWidth: 300,
+      radius: defaultCommonConfig.radiusLg,
+      iconPadding: EdgeInsets.only(top: defaultCommonConfig.vSpacingXxl!),
+      titlePaddingSm: EdgeInsets.only(
+          top: 12,
+          left: defaultCommonConfig.hSpacingXxl!,
+          right: defaultCommonConfig.hSpacingXxl!),
+      titlePaddingLg: EdgeInsets.only(
+          top: 28,
+          left: defaultCommonConfig.hSpacingXxl!,
+          right: defaultCommonConfig.hSpacingXxl!),
+      titleTextStyle: SsiTextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: defaultCommonConfig.fontSizeHead,
+          color: defaultCommonConfig.colorTextBase),
+      titleTextAlign: TextAlign.center,
+      contentPaddingSm: EdgeInsets.only(
+          top: 8,
+          left: defaultCommonConfig.hSpacingXl!,
+          right: defaultCommonConfig.hSpacingXl!),
+      contentPaddingLg: EdgeInsets.only(
+          top: 28,
+          left: defaultCommonConfig.hSpacingXl!,
+          right: defaultCommonConfig.hSpacingXl!),
+      contentTextStyle: SsiTextStyle(
+        fontSize: defaultCommonConfig.fontSizeBase,
+        color: defaultCommonConfig.colorTextImportant,
+        decoration: TextDecoration.none,
+      ),
+      contentTextAlign: TextAlign.center,
+      warningPaddingSm: EdgeInsets.only(
+          top: 6,
+          left: defaultCommonConfig.hSpacingXl!,
+          right: defaultCommonConfig.hSpacingXl!),
+      warningPaddingLg: EdgeInsets.only(
+          top: 28,
+          left: defaultCommonConfig.hSpacingXl!,
+          right: defaultCommonConfig.hSpacingXl!),
+      warningTextAlign: TextAlign.center,
+      warningTextStyle: SsiTextStyle(
+        fontSize: defaultCommonConfig.fontSizeBase,
+        color: defaultCommonConfig.brandError,
+        decoration: TextDecoration.none,
+      ),
+      dividerPadding: EdgeInsets.only(top: 28),
+      mainActionTextStyle: SsiTextStyle(
+          color: defaultCommonConfig.brandPrimary,
+          fontWeight: FontWeight.w600,
+          fontSize: defaultCommonConfig.fontSizeSubHead),
+      assistActionsTextStyle: SsiTextStyle(
+          color: defaultCommonConfig.colorTextBase,
+          fontWeight: FontWeight.w600,
+          fontSize: defaultCommonConfig.fontSizeSubHead),
+      mainActionBackgroundColor: defaultCommonConfig.fillBase,
+      assistActionsBackgroundColor: defaultCommonConfig.fillBase,
+      bottomHeight: 44.0,
+      backgroundColor: defaultCommonConfig.fillBase);
+
+  ///按钮配置
+  static SsiButtonConfig defaultButtonConfig = SsiButtonConfig();
 
   /// 表单项默认配置
   static SsiFormItemConfig defaultFormItemConfig = SsiFormItemConfig(
     headTitleTextStyle: SsiTextStyle(
-        color: defaultCommonConfig.colorTextBase, fontSize: defaultCommonConfig.fontSizeHead),
+        color: defaultCommonConfig.colorTextBase,
+        fontSize: defaultCommonConfig.fontSizeHead),
     titleTextStyle: SsiTextStyle(
-        color: defaultCommonConfig.colorTextBase, fontSize: defaultCommonConfig.fontSizeSubHead),
+        color: defaultCommonConfig.colorTextBase,
+        fontSize: defaultCommonConfig.fontSizeSubHead),
     subTitleTextStyle: SsiTextStyle(
         color: defaultCommonConfig.colorTextSecondary,
         fontSize: defaultCommonConfig.fontSizeCaption),
     errorTextStyle: SsiTextStyle(
-        color: defaultCommonConfig.brandError, fontSize: defaultCommonConfig.fontSizeCaption),
+        color: defaultCommonConfig.brandError,
+        fontSize: defaultCommonConfig.fontSizeCaption),
     hintTextStyle: SsiTextStyle(
       color: defaultCommonConfig.colorTextHint,
       fontSize: defaultCommonConfig.fontSizeSubHead,
     ),
     contentTextStyle: SsiTextStyle(
-        color: defaultCommonConfig.colorTextBase, fontSize: defaultCommonConfig.fontSizeSubHead),
-    optionsMiddlePadding: EdgeInsets.only(left: defaultCommonConfig.hSpacingMd ?? 16),
+        color: defaultCommonConfig.colorTextBase,
+        fontSize: defaultCommonConfig.fontSizeSubHead),
+    optionsMiddlePadding:
+        EdgeInsets.only(left: defaultCommonConfig.hSpacingMd ?? 16),
     optionTextStyle: SsiTextStyle(
         height: 1.3,
         color: defaultCommonConfig.colorTextBase,
@@ -184,16 +258,19 @@ class SsiDefaultConfigUtils {
         bottom: defaultCommonConfig.vSpacingLg ?? 14),
     titlePaddingSm: const EdgeInsets.only(left: 10),
     titlePaddingLg: EdgeInsets.only(left: defaultCommonConfig.hSpacingLg ?? 20),
-    subTitlePadding:
-        EdgeInsets.only(left: defaultCommonConfig.hSpacingLg ?? 20, top: defaultCommonConfig.vSpacingXs ?? 4),
-    errorPadding:
-        EdgeInsets.only(left: defaultCommonConfig.hSpacingLg ?? 20, top: defaultCommonConfig.vSpacingXs ?? 4),
+    subTitlePadding: EdgeInsets.only(
+        left: defaultCommonConfig.hSpacingLg ?? 20,
+        top: defaultCommonConfig.vSpacingXs ?? 4),
+    errorPadding: EdgeInsets.only(
+        left: defaultCommonConfig.hSpacingLg ?? 20,
+        top: defaultCommonConfig.vSpacingXs ?? 4),
     disableTextStyle: SsiTextStyle(
       color: defaultCommonConfig.colorTextDisabled,
       fontSize: defaultCommonConfig.fontSizeSubHead,
     ),
     tipsTextStyle: SsiTextStyle(
-        color: defaultCommonConfig.colorTextSecondary, fontSize: defaultCommonConfig.fontSizeBase),
+        color: defaultCommonConfig.colorTextSecondary,
+        fontSize: defaultCommonConfig.fontSizeBase),
   );
 
   /// picker 默认配置
@@ -251,5 +328,4 @@ class SsiDefaultConfigUtils {
       iconSize: SsiAppBarTheme.iconSize,
       configId: SsiThemeConfigurator.SSIKIT_CONFIG_ID,
       systemUiOverlayStyle: SystemUiOverlayStyle.dark);
-
 }
